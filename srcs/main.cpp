@@ -7,9 +7,9 @@
 #include "Logger.hpp"
 #include "KeyEvaluator.hpp"
 #include "GameState.hpp"
-#include "nlohmann/json.hpp"
 #include "FantomAI.hpp"
 #include "InspectorAI.hpp"
+#include "Question.hpp"
 
 int main(int argc, char const *argv[]) {
 
@@ -36,7 +36,6 @@ int main(int argc, char const *argv[]) {
 
     Con.Connect();
 
-    GameState gState;
     FantomAI Phantom;
     InspectorAI Detective;
 
@@ -66,17 +65,20 @@ int main(int argc, char const *argv[]) {
 
         // Reading Data
 
-        std::string gData, gQuestion;
+        std::string gData;
+        Question::Questions gQuestion;
+        GameState gState;
 
         for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
             switch (KeyEvaluator::Evaluate(it.key())) {
                 case KeyEvaluator::Question :
-                    gQuestion = it.value();
                     Logger::Log() << "Question Key Found." << std::endl;
+                    gQuestion = Question::Evaluate(it.value());
                     break;
                 case KeyEvaluator::Data :
                     Logger::Log() << "Data Key Found." << std::endl;
 //                    gData = it.value();
+                    // NEED TO PARSE DATA
                     break;
                 case KeyEvaluator::GameState :
                     Logger::Log() << "GameState Key Found." << std::endl;

@@ -4,6 +4,6 @@
 
 #include "FantomAI.hpp"
 
-unsigned int FantomAI::MakeChoice(const std::string &gQuestion, const std::string &gData, const GameState &gState) {
+unsigned int FantomAI::MakeChoice(const Question::Questions & gQuestion, const std::string & gData, const GameState & gState) {
     return 0;
 }
