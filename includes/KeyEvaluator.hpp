@@ -13,7 +13,15 @@ public:
         Data,
         GameState,
         Question,
-        Unknown
+        Unknown,
+        gStateBlocked,
+        gStateCharacters,
+        gStateExit,
+        gStateFantom,
+        gStateNumberTour,
+        gStateCarlotta,
+        gStateShadow,
+        gStateTiles
     };
 
     static Type Evaluate(const std::string &);

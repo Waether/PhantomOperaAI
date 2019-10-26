@@ -11,8 +11,6 @@
 #include "FantomAI.hpp"
 #include "InspectorAI.hpp"
 
-using json = nlohmann::json;
-
 int main(int argc, char const *argv[]) {
 
     // Handling Player Type (Fantom / Inspector)
@@ -46,31 +44,43 @@ int main(int argc, char const *argv[]) {
     bool GameOn = true;
 
     while (GameOn) {
-        msg_received = Con.ReceiveMsg();
 
-        Logger::Debug() << msg_received.c_str() << std::endl;
+        try {
+            msg_received = Con.ReceiveMsg();
+        } catch (NetException::PearDisconnected & e) {
+            Logger::Error() << "Pear Disconnected." << std::endl;
+            GameOn = false;
+            continue;
+        }
+
+        if (msg_received.empty())
+        {
+            Logger::Log() << "Skipping message since empty." << std::endl;
+            continue;
+        }
 
         // Parsing JSON
-
-        json j = json::parse(msg_received.c_str());
+        Logger::Log() << "Parsing JSON ..." << std::endl;
+        nlohmann::json j = nlohmann::json::parse(msg_received.c_str());
+        Logger::Log() << "JSON Parsed." << std::endl;
 
         // Reading Data
 
         std::string gData, gQuestion;
 
-        for (json::iterator it = j.begin(); it != j.end(); ++it) {
+        for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
             switch (KeyEvaluator::Evaluate(it.key())) {
                 case KeyEvaluator::Question :
                     gQuestion = it.value();
-                    Logger::Debug() << "gQuestion : " << it.value() << std::endl;
+                    Logger::Log() << "Question Key Found." << std::endl;
                     break;
                 case KeyEvaluator::Data :
-                    Logger::Debug() << "gData : " << it.value() << std::endl;
+                    Logger::Log() << "Data Key Found." << std::endl;
 //                    gData = it.value();
                     break;
                 case KeyEvaluator::GameState :
-                    Logger::Debug() << "gameState : " << it.value() << std::endl;
-//                    gState.Update(it.value());
+                    Logger::Log() << "GameState Key Found." << std::endl;
+                    gState.Update(it.value());
                     break;
                 case KeyEvaluator::Unknown :
                     Logger::Error() << "Found Unknown Key : " << it.key() << std::endl;
@@ -83,14 +93,22 @@ int main(int argc, char const *argv[]) {
 
         // AI Part
 
+        Logger::Log() << "Choosing Answer ..." << std::endl;
+
 //        if (playerType == 0) // Fantom
 //            Logger::Debug() << "Fantom choose : " << Phantom.MakeChoice(gQuestion, gData, gState) << std::endl;
 //        else // Inspector
 //            Logger::Debug() << "Inspector choose : " << Detective.MakeChoice(gQuestion, gData, gState) << std::endl;
 
+        Logger::Log() << "Sending Answer ..." << std::endl;
+
         // Send Message Back
 
+        Logger::Log() << "Done. Waiting for Server ..." << std::endl;
+
     }
+
+    Logger::Log() << "Client Now Closing." << std::endl;
 
     return 0;
 }

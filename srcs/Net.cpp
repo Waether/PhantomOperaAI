@@ -71,7 +71,6 @@ std::string Net::ReceiveMsg() {
 
         if (read_amount == 0)
         {
-            Logger::Log() << "Pear Disconnected." << std::endl;
             throw NetException::PearDisconnected();
         } else if (read_amount < 0) {
             Logger::Error() << "Socket Broken." << std::endl;
