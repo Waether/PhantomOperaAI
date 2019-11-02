@@ -104,6 +104,8 @@ int main(int argc, char const *argv[]) {
 
         Logger::Log() << "Sending Answer ..." << std::endl;
 
+        Con.SendMsg("1");
+
         // Send Message Back
 
         Logger::Log() << "Done. Waiting for Server ..." << std::endl;
