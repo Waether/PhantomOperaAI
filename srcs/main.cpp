@@ -62,8 +62,6 @@ int main(int argc, char const *argv[]) {
 
         Logger::Log() << "Parsing JSON ..." << std::endl;
 
-        Logger::Debug() << msg_received << std::endl;
-
         nlohmann::json j = nlohmann::json::parse(msg_received.c_str());
         Logger::Log() << "JSON Parsed." << std::endl;
 
