@@ -5,7 +5,6 @@
 #ifndef PHANTOMOPERAAI_GAMEDATA_HPP
 #define PHANTOMOPERAAI_GAMEDATA_HPP
 
-
 #include <nlohmann/json.hpp>
 #include "Character.hpp"
 

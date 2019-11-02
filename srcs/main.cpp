@@ -61,6 +61,9 @@ int main(int argc, char const *argv[]) {
         // Parsing JSON
 
         Logger::Log() << "Parsing JSON ..." << std::endl;
+
+        Logger::Debug() << msg_received << std::endl;
+
         nlohmann::json j = nlohmann::json::parse(msg_received.c_str());
         Logger::Log() << "JSON Parsed." << std::endl;
 
@@ -104,7 +107,7 @@ int main(int argc, char const *argv[]) {
 
         Logger::Log() << "Sending Answer ..." << std::endl;
 
-        Con.SendMsg("1");
+        Con.SendMsg("0");
 
         // Send Message Back
 

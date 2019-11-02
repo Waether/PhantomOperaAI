@@ -84,15 +84,15 @@ std::string Net::ReceiveMsg() {
 
         ssize_t corrected_read_amount = read_amount;
 
-        while (buffer[0] < ' ' && corrected_read_amount >= 0) // Handle server sending '0' as its first byte for no reason
-        {
-            Logger::Error() << "Received 0 as first byte from server." << std::endl;
-            for (unsigned int i = 0; i < corrected_read_amount; i++) {
-                buffer[i] = buffer[i + 1];
+        if (buffer[0] == 0) //Handling the first 4 bytes of each messages
+            for (int f = 0; f < 4; f++) {
+                Logger::Error() << "Received 0 as first byte from server." << std::endl;
+                for (unsigned int i = 0; i < corrected_read_amount; i++) {
+                    buffer[i] = buffer[i + 1];
+                }
+                corrected_read_amount -= 1;
+                buffer[corrected_read_amount] = 0;
             }
-            corrected_read_amount -= 1;
-            buffer[corrected_read_amount] = 0;
-        }
 
         std::stringstream tmp_str;
         for (unsigned int i = 0; i <= corrected_read_amount; i++) {
