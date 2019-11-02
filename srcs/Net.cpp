@@ -86,7 +86,7 @@ std::string Net::ReceiveMsg() {
 
         if (buffer[0] == 0) //Handling the first 4 bytes of each messages
             for (int f = 0; f < 4; f++) {
-                Logger::Error() << "Received 0 as first byte from server." << std::endl;
+//                Logger::Error() << "Received Python socket lib struct as first byte from server." << std::endl;
                 for (unsigned int i = 0; i < corrected_read_amount; i++) {
                     buffer[i] = buffer[i + 1];
                 }
