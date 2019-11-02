@@ -3,13 +3,13 @@
 //
 
 #include <iomanip>
+#include <GameData.hpp>
 #include "Net.hpp"
 #include "Logger.hpp"
 #include "KeyEvaluator.hpp"
 #include "GameState.hpp"
 #include "FantomAI.hpp"
 #include "InspectorAI.hpp"
-#include "Question.hpp"
 
 int main(int argc, char const *argv[]) {
 
@@ -59,15 +59,16 @@ int main(int argc, char const *argv[]) {
         }
 
         // Parsing JSON
+
         Logger::Log() << "Parsing JSON ..." << std::endl;
         nlohmann::json j = nlohmann::json::parse(msg_received.c_str());
         Logger::Log() << "JSON Parsed." << std::endl;
 
         // Reading Data
 
-        std::string gData;
         Question::Questions gQuestion;
         GameState gState;
+        GameData gData;
 
         for (nlohmann::json::iterator it = j.begin(); it != j.end(); ++it) {
             switch (KeyEvaluator::Evaluate(it.key())) {
@@ -77,8 +78,7 @@ int main(int argc, char const *argv[]) {
                     break;
                 case KeyEvaluator::Data :
                     Logger::Log() << "Data Key Found." << std::endl;
-//                    gData = it.value();
-                    // NEED TO PARSE DATA
+                    gData.Update(it.value());
                     break;
                 case KeyEvaluator::GameState :
                     Logger::Log() << "GameState Key Found." << std::endl;

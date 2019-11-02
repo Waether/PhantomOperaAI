@@ -17,7 +17,7 @@ void GameState::Update(nlohmann::json & newGameState) {
                 _blocked.first = it.value()[0];
                 _blocked.second = it.value()[1];
                 Logger::Log() << '\t' << "Path is blocked between tile n°" << _blocked.first
-                                << " and n°" << _blocked.second << std::endl;
+                              << " and n°" << _blocked.second << std::endl;
                 break;
 
             case KeyEvaluator::gStateCharacters :
@@ -85,6 +85,7 @@ void GameState::Update(nlohmann::json & newGameState) {
 
             default :
                 Logger::Error() << '\t' << "Found Unknown Key : " << it.key() << std::endl;
+                Logger::Error() << '\t' << it.value() << std::endl;
                 break;
         }
     }

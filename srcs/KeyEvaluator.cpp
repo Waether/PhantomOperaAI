@@ -31,7 +31,7 @@ KeyEvaluator::Type KeyEvaluator::Evaluate(const std::string & key) {
         return KeyEvaluator::gStateCarlotta;
     if (key == "shadow")
         return KeyEvaluator::gStateShadow;
-    if (key == "tiles")
+    if (key == "active tiles")
         return KeyEvaluator::gStateTiles;
 
     return KeyEvaluator::Unknown;
