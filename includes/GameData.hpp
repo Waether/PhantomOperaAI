@@ -10,11 +10,23 @@
 #include "Character.hpp"
 
 class GameData {
+public:
+    enum Mode {
+        Char,
+        Number
+    };
+
 private:
-    std::vector<Character> _data;
+    std::vector<Character> _characters;
+    std::vector<int> _numbers;
+    Mode _mode;
 
 public:
+
     void Update(nlohmann::json &);
+    Mode getMode();
+    std::vector<Character> getCharacters();
+    std::vector<int> getNumbers();
 
 };
 

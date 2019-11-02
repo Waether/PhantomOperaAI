@@ -9,6 +9,9 @@ void GameState::Update(nlohmann::json & newGameState) {
 
     Logger::Log() << "Updating GameState ..." << std::endl;
 
+    _characters.clear();
+    _tiles.clear();
+
     for (nlohmann::json::iterator it = newGameState.begin(); it != newGameState.end(); ++it) {
 
         switch (KeyEvaluator::Evaluate(it.key())) {
