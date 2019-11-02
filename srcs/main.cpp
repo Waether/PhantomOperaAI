@@ -105,7 +105,7 @@ int main(int argc, char const *argv[]) {
 
         Logger::Log() << "Sending Answer ..." << std::endl;
 
-        Con.SendMsg("0");
+        Con.SendMsg("1");
 
         // Send Message Back
 

@@ -6,12 +6,19 @@
 #define PHANTOMOPERAAI_QUESTION_HPP
 
 #include <string>
+#include <regex>
 #include "Logger.hpp"
 
 class Question {
 public:
     enum Questions {
         CharacterSelection,
+        PositionSelection,
+        ActivatePower,
+        HandlePower,
+        PowerExit,
+        PowerRoom,
+        PowerMove,
         Unknown
     };
 
