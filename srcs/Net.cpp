@@ -48,7 +48,10 @@ bool Net::Connect() {
 bool Net::SendMsg(const std::string & message) {
     Logger::Log() << "Sending Message ..." << std::endl;
 
-    ssize_t result = send(_sock , message.c_str(), message.size() , 0 );
+    Logger::Debug() << "Msg Content : " << message << std::endl;
+
+    ssize_t result = write(_sock, "\x00\x00\x00\x01", 4); // Temporary Bandage
+    result += write(_sock, message.c_str(), message.size());
 
     if (result < 0) {
         Logger::Error() << "Failed to send Message." << std::endl;
