@@ -3,13 +3,11 @@
 //
 
 #include <iomanip>
-#include <GameData.hpp>
+#include "GameData.hpp"
+#include "Question.hpp"
 #include "Net.hpp"
-#include "Logger.hpp"
 #include "KeyEvaluator.hpp"
 #include "GameState.hpp"
-#include "FantomAI.hpp"
-#include "InspectorAI.hpp"
 
 int main(int argc, char const *argv[]) {
 
@@ -36,9 +34,6 @@ int main(int argc, char const *argv[]) {
 
     Con.Connect();
 
-    FantomAI Phantom;
-    InspectorAI Detective;
-
     std::string msg_received;
     bool GameOn = true;
 
@@ -58,16 +53,13 @@ int main(int argc, char const *argv[]) {
             continue;
         }
 
-        // Parsing JSON
-
         Logger::Log() << "Parsing JSON ..." << std::endl;
 
         nlohmann::json j = nlohmann::json::parse(msg_received.c_str());
+
         Logger::Log() << "JSON Parsed." << std::endl;
 
-        // Reading Data
-
-        Question::Questions gQuestion;
+        Question::Questions gQuestion = Question::Unknown;
         GameState gState;
         GameData gData;
 
@@ -94,20 +86,39 @@ int main(int argc, char const *argv[]) {
             }
         }
 
-        // AI Part
-
         Logger::Log() << "Choosing Answer ..." << std::endl;
 
-//        if (playerType == 0) // Fantom
-//            Logger::Debug() << "Fantom choose : " << Phantom.MakeChoice(gQuestion, gData, gState) << std::endl;
-//        else // Inspector
-//            Logger::Debug() << "Inspector choose : " << Detective.MakeChoice(gQuestion, gData, gState) << std::endl;
+        switch (gQuestion) {
+            case Question::CharacterSelection :
+                // Ask Move Generator for new move
+                // Execute Move
+                break;
+            case Question::PositionSelection:
+                // Execute Move
+                break;
+            case Question::ActivatePower:
+                // Execute Move
+                break;
+            case Question::HandlePower:
+                // Execute Move
+                break;
+            case Question::PowerExit:
+                // Execute Move
+                break;
+            case Question::PowerRoom:
+                // Execute Move
+                break;
+            case Question::PowerMove:
+                // Execute Move
+                break;
+            case Question::Unknown:
+            Logger::Error() << "Invalid Question Received." << std::endl;
+                break;
+        }
 
         Logger::Log() << "Sending Answer ..." << std::endl;
 
-        Con.SendMsg("1");
-
-        // Send Message Back
+        Con.SendMsg("1"); // Temporary Answer
 
         Logger::Log() << "Done. Waiting for Server ..." << std::endl;
 
