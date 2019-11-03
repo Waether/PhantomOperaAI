@@ -6,8 +6,6 @@
 
 Question::Questions Question::Evaluate(const std::string &qst) {
 
-    Logger::Debug() << "Evaluating Question : " << qst << std::endl;
-
     std::regex regexCharacterSelection("^select character/?$",
                                        std::regex_constants::ECMAScript | std::regex_constants::icase);
 
