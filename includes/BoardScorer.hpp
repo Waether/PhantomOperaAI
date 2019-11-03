@@ -12,7 +12,7 @@ private:
     bool _isSet;
     GameState _gameState;
     int _scoreGhost;
-    int _scoreInspector
+    int _scoreInspector;
     std::map<int, int> _charactersPosition;
 
 public:
