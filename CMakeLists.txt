@@ -11,7 +11,6 @@ file(
         SRCS
         includes/*
         srcs/*
-        srcs/main.cpp
 )
 
 include_directories(includes/)
