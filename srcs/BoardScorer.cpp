@@ -1,12 +1,15 @@
 #include "../includes/BoardScorer.hpp"
 
-BoardScorer::BoardScorer() {}
+BoardScorer::BoardScorer() {
+    bool _isSet = false;
+}
 
-BoardScorer::BoardScorer(GameState& gameState) {
+BoardScorer::BoardScorer(const GameState& gameState) {
+    bool _isSet = false;
     setGameState(gameState);
 }
 
-void BoardScorer::setGameState(GameState& gameState) {
+void BoardScorer::setGameState(const GameState& gameState) {
     _gameState = gameState;
     _scoreGhost = 0;
     _scoreInspector = 0;
@@ -19,35 +22,35 @@ void BoardScorer::setGameState(GameState& gameState) {
 
 int BoardScorer::EvaluateGhost() {
     if (!_isSet)
-        return;
-    return _scoreGhost = 0;
+        throw BoardException::GameStateInit();
+   return _scoreGhost = 0;
 }
 
 int BoardScorer::EvaluateInspector() {
     if (!_isSet)
-        return;
+        throw BoardException::GameStateInit();
     return _scoreInspector = 0;
 }
 
 std::pair<int, int> BoardScorer::EvaluateBoard() {
     if (!_isSet)
-        return;
+        throw BoardException::GameStateInit();
     return std::pair<int, int>(EvaluateGhost(), EvaluateInspector());
 }
 
-int BoardScorer::EvaluateGhost(GameState& gameState) {
+int BoardScorer::EvaluateGhost(const GameState& gameState) {
     if (!_isSet)
         setGameState(gameState);
     return _scoreGhost = 0;
 }
 
-int BoardScorer::EvaluateInspector(GameState& gameState) {
+int BoardScorer::EvaluateInspector(const GameState& gameState) {
     if (!_isSet)
         setGameState(gameState);
     return _scoreInspector = 0;
 }
 
-std::pair<int, int> BoardScorer::EvaluateBoard(GameState& gameState) {
+std::pair<int, int> BoardScorer::EvaluateBoard(const GameState& gameState) {
     if (!_isSet)
         setGameState(gameState);
     return std::pair<int, int>(EvaluateGhost(), EvaluateInspector());
