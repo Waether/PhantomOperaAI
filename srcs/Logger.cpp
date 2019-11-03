@@ -19,8 +19,3 @@ std::ostream & Logger::Debug() {
 std::ostream & Logger::Error() {
     return std::cerr << "\033[31m" << "[ERR] ";
 }
-
-Logger::~Logger() {
-    std::cout << "\033[39m";
-    std::cout.clear();
-}

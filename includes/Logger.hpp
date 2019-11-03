@@ -14,10 +14,6 @@ public:
     static std::ostream & Log();
     static std::ostream & Debug();
     static std::ostream & Error();
-
-    Logger() = default;
-
-    ~Logger();
 };
 
 #endif //C_NET_LOGGER_HPP
