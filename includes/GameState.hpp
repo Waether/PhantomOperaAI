@@ -34,6 +34,7 @@ public:
     const int & getNbTour();
     const int & getCarottaPosition();
     const int & getShadow();
+    const int getCurrentPlayer();
 
 };
 

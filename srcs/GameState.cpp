@@ -127,3 +127,9 @@ const std::vector<Character> &GameState::getCharacters() {
 const std::vector<Tile> &GameState::getTiles() {
     return _tiles;
 }
+
+const int GameState::getCurrentPlayer() {
+    if ((((_nb_tour % 8) + 1) % 2) == 0)
+        return 1;
+    return 0;
+}

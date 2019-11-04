@@ -68,6 +68,15 @@ Question::Questions Question::Evaluate(const std::string &qst) {
         return Question::PowerMove;
     }
 
+
+    std::regex regexPowerMoveTarget("^[a-z]{3,6} character power move [a-z]{3,6}/?$",
+                              std::regex_constants::ECMAScript | std::regex_constants::icase);
+
+    if (std::regex_search(qst, regexPowerMoveTarget)) {
+        Logger::Log() << "\tPowerMoveTarget" << std::endl;
+        return Question::PowerMoveTarget;
+    }
+
     Logger::Error() << "Unknown Question : " << qst << std::endl;
 
     return Question::Unknown;
