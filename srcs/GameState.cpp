@@ -129,7 +129,12 @@ const std::vector<Tile> &GameState::getTiles() {
 }
 
 const int GameState::getCurrentPlayer() {
-    if ((((_nb_tour % 8) + 1) % 2) == 0)
-        return 1;
-    return 0;
+    int turn = (_nb_tour % 8) + 1;
+
+    switch (turn) {
+        case (1, 4, 6, 7) :
+            return 1;
+        case (2, 3, 5, 8) :
+            return 0;
+    }
 }
