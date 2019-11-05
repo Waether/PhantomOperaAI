@@ -141,7 +141,16 @@ int main(int argc, char const *argv[]) {
                     Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._powerMoveIdx));
                     break;
+                case Question::PowerMoveTarget:
+                    if (currentMove._powerMoveTargetIdx == 42)
+                        Logger::Error() << "Power Move Target Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
+                    Con.SendMsg(std::to_string(currentMove._powerMoveTargetIdx));
+                    break;
                 case Question::Unknown:
+                    Logger::Error() << "Invalid Question Received." << std::endl;
+                    break;
+                default:
                     Logger::Error() << "Invalid Question Received." << std::endl;
                     break;
             }

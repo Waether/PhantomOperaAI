@@ -13,6 +13,7 @@ typedef struct      s_Move {
     unsigned int    _powerExitIdx;
     unsigned int    _powerRoomIdx;
     unsigned int    _powerMoveIdx;
+    unsigned int    _powerMoveTargetIdx;
 }                   Move;
 
 #endif //PHANTOMOPERAAI_MOVE_HPP
