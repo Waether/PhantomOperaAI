@@ -42,16 +42,15 @@ public:
     const std::vector<std::vector<unsigned int>> & getMap();
     const std::vector<std::vector<unsigned int>> & getPinkMap();
 
-    void setCharacters(const std::vector<Character> &_characters);
-    void setTiles(const std::vector<Tile> &_tiles);
-    void setBlocked(const std::pair<int, int> &_blocked);
-    void setFantom(const std::string &_fantom);
-    void setExit(int _exit);
-    void setNbTour(int _nb_tour);
-    void setCarlottaPosition(int _carlotta_position);
-    void setShadow(int _shadow);
+    void setCharacters(const std::vector<Character> &);
+    void setTiles(const std::vector<Tile> &);
+    void setBlocked(const std::pair<int, int> &);
+    void setFantom(const std::string &);
+    void setExit(int);
+    void setNbTour(int);
+    void setCarlottaPosition(int);
+    void setShadow(int);
 
 };
-
 
 #endif //PHANTOMOPERAAI_GAMESTATE_HPP
