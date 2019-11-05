@@ -22,8 +22,12 @@ private:
     int _nb_tour;
     int _carlotta_position;
     int _shadow;
+    std::vector<std::vector<unsigned int>> _map;
+    std::vector<std::vector<unsigned int>> _pink_map;
 
 public:
+    GameState();
+
     void Update(nlohmann::json &);
 
     const std::vector<Tile> & getTiles();
@@ -35,6 +39,8 @@ public:
     const int & getCarottaPosition();
     const int & getShadow();
     const int getCurrentPlayer();
+    const std::vector<std::vector<unsigned int>> & getMap();
+    const std::vector<std::vector<unsigned int>> & getPinkMap();
 
 };
 
