@@ -126,7 +126,7 @@ const int &GameState::getShadow() {
     return _shadow;
 }
 
-const int &GameState::getCarottaPosition() {
+const int &GameState::getCarlottaPosition() {
     return _carlotta_position;
 }
 

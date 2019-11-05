@@ -36,7 +36,7 @@ public:
     const std::string & getFantom();
     const int & getExit();
     const int & getNbTour();
-    const int & getCarottaPosition();
+    const int & getCarlottaPosition();
     const int & getShadow();
     const int getCurrentPlayer();
     const std::vector<std::vector<unsigned int>> & getMap();
