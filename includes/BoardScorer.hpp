@@ -5,6 +5,7 @@
 #include "BoardException.hpp"
 
 #include "GameState.hpp"
+#include "Character.hpp"
 #include "Logger.hpp"
 
 class BoardScorer {
@@ -13,7 +14,7 @@ private:
     GameState _gameState;
     int _scoreGhost;
     int _scoreInspector;
-    std::map<int, int> _charactersPosition;
+    std::map<int, std::vector<Character>> _charactersPosition;
 
 public:
     explicit BoardScorer();
@@ -30,8 +31,12 @@ public:
 private:
     bool IsGhostHidden();
 
-    int GetNumberOfHiddenCharacter();
-    int GetNumberOfVisibleCharacter();
+    int GetNumberOfSuspectCharacters();
+    int GetNumberOfNonSuspectCharacters();
+    int GetNumberOfHiddenSuspectCharacters();
+    int GetNumberOfHiddenCharacters();
+    int GetNumberOfVisibleCharacters();
+    int GetNumberOfVisibleSuspectCharacters();
 };
 
 
