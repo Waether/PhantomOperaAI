@@ -172,3 +172,36 @@ const std::vector<std::vector<unsigned int>> & GameState::getMap() {
 const std::vector<std::vector<unsigned int>> & GameState::getPinkMap() {
     return _pink_map;
 }
+
+void GameState::setCharacters(const std::vector<Character> &characters) {
+    _characters = characters;
+}
+
+void GameState::setTiles(const std::vector<Tile> &tiles) {
+    _tiles = tiles;
+}
+
+void GameState::setBlocked(const std::pair<int, int> &blocked) {
+    _blocked = blocked;
+}
+
+void GameState::setFantom(const std::string &fantom) {
+    _fantom = fantom;
+}
+
+void GameState::setExit(int exit) {
+    _exit = exit;
+}
+
+void GameState::setNbTour(int nb_tour) {
+    _nb_tour = nb_tour;
+}
+
+void GameState::setCarlottaPosition(int carlotta_position) {
+    _carlotta_position = carlotta_position;
+}
+
+void GameState::setShadow(int shadow) {
+    _shadow = shadow;
+}
+
