@@ -90,11 +90,11 @@ const std::vector<Move> CharacterMove::getMoveForWhite(const GameState &gState) 
 
 const std::vector<Move> CharacterMove::getBaseMove(const Character &character, const GameState &gState) {
     std::vector<Move> moves;
-    unsigned int current_char = gState.getCharacterIndexFromTiles(character._color);
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
 
-    for (unsigned int room : gState.getMap()[character._position]) {
+    for (int room : gState.getMap()[character._position]) {
         if (!gState.pathIsLocked(character._position, room))
-            moves.emplace_back(Move {current_char, room, 0, 42, 42, 42, 42, 42});
+            moves.emplace_back(Move {current_char, room, 0, -1, -1, -1, -1, -1});
     }
 
     return moves;

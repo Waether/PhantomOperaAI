@@ -165,11 +165,11 @@ const int GameState::getCurrentPlayer() const {
     }
 }
 
-const std::vector<std::vector<unsigned int>> & GameState::getMap() const {
+const std::vector<std::vector<int>> & GameState::getMap() const {
     return _map;
 }
 
-const std::vector<std::vector<unsigned int>> & GameState::getPinkMap() const {
+const std::vector<std::vector<int>> & GameState::getPinkMap() const {
     return _pink_map;
 }
 
@@ -210,7 +210,7 @@ bool GameState::pathIsLocked(int first, int second) const {
            (_blocked.first == second && _blocked.second == first);
 }
 
-const unsigned int GameState::getCharacterIndexFromTiles(Color::Colors clr) const {
+const int GameState::getCharacterIndexFromTiles(Color::Colors clr) const {
 
     for (unsigned int i = 0; i <= _tiles.size(); i++) {
         if (_tiles[i]._color == clr)

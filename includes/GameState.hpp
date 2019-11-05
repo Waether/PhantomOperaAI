@@ -22,8 +22,8 @@ private:
     int _nb_tour;
     int _carlotta_position;
     int _shadow;
-    std::vector<std::vector<unsigned int>> _map;
-    std::vector<std::vector<unsigned int>> _pink_map;
+    std::vector<std::vector<int>> _map;
+    std::vector<std::vector<int>> _pink_map;
 
 public:
     GameState();
@@ -39,8 +39,8 @@ public:
     const int & getCarlottaPosition() const;
     const int & getShadow() const;
     const int getCurrentPlayer() const;
-    const std::vector<std::vector<unsigned int>> & getMap() const;
-    const std::vector<std::vector<unsigned int>> & getPinkMap() const;
+    const std::vector<std::vector<int>> & getMap() const;
+    const std::vector<std::vector<int>> & getPinkMap() const;
 
     void setCharacters(const std::vector<Character> &);
     void setTiles(const std::vector<Tile> &);
@@ -51,7 +51,7 @@ public:
     void setCarlottaPosition(int);
     void setShadow(int);
 
-    const unsigned int getCharacterIndexFromTiles(Color::Colors) const;
+    const int getCharacterIndexFromTiles(Color::Colors) const;
     bool pathIsLocked(int, int) const;
 };
 
