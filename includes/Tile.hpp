@@ -33,5 +33,4 @@ public:
     friend std::ostream & operator<<(std::ostream& os, const Tile&);
 };
 
-
 #endif //PHANTOMOPERAAI_TILE_HPP
