@@ -4,7 +4,7 @@
 
 #include "CharacterMove.hpp"
 
-const std::vector<Move> &CharacterMove::getMoveForCharacter(const Character &character, const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForCharacter(const Character &character, const GameState &gState) {
 
     std::vector<Move> allmoves;
     std::vector<Move> tmp;
@@ -48,38 +48,54 @@ const std::vector<Move> &CharacterMove::getMoveForCharacter(const Character &cha
     return allmoves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForBlue(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForBlue(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForGrey(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForGrey(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForBlack(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForBlack(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForRed(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForRed(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForPurple(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForPurple(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForBrown(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForBrown(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForPink(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForPink(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getMoveForWhite(const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getMoveForWhite(const GameState &gState) {
+    std::vector<Move> moves;
+    return moves;
 }
 
-const std::vector<Move> &CharacterMove::getBaseMove(const Character &character, const GameState &gState) {
-    return <#initializer#>;
+const std::vector<Move> CharacterMove::getBaseMove(const Character &character, const GameState &gState) {
+    std::vector<Move> moves;
+    unsigned int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    for (unsigned int room : gState.getMap()[character._position]) {
+        if (!gState.pathIsLocked(character._position, room))
+            moves.emplace_back(Move {current_char, room, 0, 42, 42, 42, 42, 42});
+    }
+
+    return moves;
 }

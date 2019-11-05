@@ -2,7 +2,7 @@
 // Created by waether on 26/10/19.
 //
 
-#include "Tiles.hpp"
+#include "Tile.hpp"
 
 const Color::Colors &Tile::getColor() {
     return _color;

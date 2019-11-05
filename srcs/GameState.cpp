@@ -122,39 +122,39 @@ void GameState::Update(nlohmann::json & newGameState) {
     Logger::Log() << "GameState Updated." << std::endl;
 }
 
-const int &GameState::getShadow() {
+const int &GameState::getShadow() const {
     return _shadow;
 }
 
-const int &GameState::getCarlottaPosition() {
+const int &GameState::getCarlottaPosition() const {
     return _carlotta_position;
 }
 
-const int &GameState::getNbTour() {
+const int &GameState::getNbTour() const {
     return _nb_tour;
 }
 
-const int &GameState::getExit() {
+const int &GameState::getExit() const {
     return _exit;
 }
 
-const std::string &GameState::getFantom() {
+const std::string &GameState::getFantom() const {
     return _fantom;
 }
 
-const std::pair<int, int> &GameState::getBlocked() {
+const std::pair<int, int> &GameState::getBlocked() const {
     return _blocked;
 }
 
-const std::vector<Character> &GameState::getCharacters() {
+const std::vector<Character> &GameState::getCharacters() const {
     return _characters;
 }
 
-const std::vector<Tile> &GameState::getTiles() {
+const std::vector<Tile> &GameState::getTiles() const {
     return _tiles;
 }
 
-const int GameState::getCurrentPlayer() {
+const int GameState::getCurrentPlayer() const {
     int turn = (_nb_tour % 8) + 1;
 
     switch (turn) {
@@ -165,11 +165,11 @@ const int GameState::getCurrentPlayer() {
     }
 }
 
-const std::vector<std::vector<unsigned int>> & GameState::getMap() {
+const std::vector<std::vector<unsigned int>> & GameState::getMap() const {
     return _map;
 }
 
-const std::vector<std::vector<unsigned int>> & GameState::getPinkMap() {
+const std::vector<std::vector<unsigned int>> & GameState::getPinkMap() const {
     return _pink_map;
 }
 
@@ -203,5 +203,23 @@ void GameState::setCarlottaPosition(int carlotta_position) {
 
 void GameState::setShadow(int shadow) {
     _shadow = shadow;
+}
+
+bool GameState::pathIsLocked(int first, int second) const {
+    if (_blocked.first == first && _blocked.second == second)
+        return true;
+    if (_blocked.first == second && _blocked.second == first)
+        return true;
+    return false;
+}
+
+const unsigned int GameState::getCharacterIndexFromTiles(Color::Colors clr) const {
+
+    for (unsigned int i = 0; i <= _tiles.size(); i++) {
+        if (_tiles[i]._color == clr)
+            return i;
+    }
+
+    return 0;
 }
 

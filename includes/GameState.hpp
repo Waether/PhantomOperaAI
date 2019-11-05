@@ -10,7 +10,7 @@
 #include "nlohmann/json.hpp"
 #include "KeyEvaluator.hpp"
 #include "Character.hpp"
-#include "Tiles.hpp"
+#include "Tile.hpp"
 
 class GameState {
 private:
@@ -30,17 +30,17 @@ public:
 
     void Update(nlohmann::json &);
 
-    const std::vector<Tile> & getTiles();
-    const std::vector<Character> & getCharacters();
-    const std::pair<int, int> & getBlocked();
-    const std::string & getFantom();
-    const int & getExit();
-    const int & getNbTour();
-    const int & getCarlottaPosition();
-    const int & getShadow();
-    const int getCurrentPlayer();
-    const std::vector<std::vector<unsigned int>> & getMap();
-    const std::vector<std::vector<unsigned int>> & getPinkMap();
+    const std::vector<Tile> & getTiles() const;
+    const std::vector<Character> & getCharacters() const;
+    const std::pair<int, int> & getBlocked() const;
+    const std::string & getFantom() const;
+    const int & getExit() const;
+    const int & getNbTour() const;
+    const int & getCarlottaPosition() const;
+    const int & getShadow() const;
+    const int getCurrentPlayer() const;
+    const std::vector<std::vector<unsigned int>> & getMap() const;
+    const std::vector<std::vector<unsigned int>> & getPinkMap() const;
 
     void setCharacters(const std::vector<Character> &);
     void setTiles(const std::vector<Tile> &);
@@ -51,6 +51,8 @@ public:
     void setCarlottaPosition(int);
     void setShadow(int);
 
+    const unsigned int getCharacterIndexFromTiles(Color::Colors) const;
+    bool pathIsLocked(int, int) const;
 };
 
 #endif //PHANTOMOPERAAI_GAMESTATE_HPP

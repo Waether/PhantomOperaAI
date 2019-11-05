@@ -13,14 +13,6 @@ file(
         srcs/*
 )
 
-list(
-        FILTER
-        SRCS
-        EXCLUDE
-        REGEX
-        ".*CharacterMove.cpp$"
-)
-
 include_directories(includes/)
 
 add_executable(
