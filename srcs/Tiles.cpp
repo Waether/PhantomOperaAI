@@ -20,6 +20,32 @@ const bool &Tile::isSuspect() {
     return _suspect;
 }
 
+void Tile::setColor(const Color::Colors& color) {
+    _color = color;
+}
+
+void Tile::setPosition(const int& position) {
+    _position = position;
+}
+
+void Tile::setPower(const bool& power) {
+    _power = power;
+}
+
+void Tile::setSuspect(const bool& suspect) {
+    _suspect = suspect;
+}
+
+void Tile::setTiles(const Color::Colors& color,
+                            const int& position,
+                            const bool& power,
+                            const bool& suspect) {
+    setColor(color);
+    setPosition(position);
+    setPower(power);
+    setSuspect(suspect);
+}
+
 Tile::Tile(nlohmann::json jsontiles) {
     unsigned int set = 0;
 

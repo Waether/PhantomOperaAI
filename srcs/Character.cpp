@@ -20,6 +20,32 @@ const bool &Character::isSuspect() {
     return _suspect;
 }
 
+void Character::setColor(const Color::Colors& color) {
+    _color = color;
+}
+
+void Character::setPosition(const int& position) {
+    _position = position;
+}
+
+void Character::setPower(const bool& power) {
+    _power = power;
+}
+
+void Character::setSuspect(const bool& suspect) {
+    _suspect = suspect;
+}
+
+void Character::setCharacter(const Color::Colors& color,
+                            const int& position,
+                            const bool& power,
+                            const bool& suspect) {
+    setColor(color);
+    setPosition(position);
+    setPower(power);
+    setSuspect(suspect);
+}
+
 Character::Character(nlohmann::json jsoncharacter) {
     unsigned int set = 0;
 

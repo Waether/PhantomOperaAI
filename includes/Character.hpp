@@ -24,6 +24,12 @@ public:
     const bool & getPower();
     const bool & isSuspect();
 
+    void setColor(const Color::Colors&);
+    void setPosition(const int&);
+    void setPower(const bool&);
+    void setSuspect(const bool&);
+    void setCharacter(const Color::Colors&, const int&, const bool&, const bool&);
+
     friend std::ostream & operator<<(std::ostream& os, const Character&);
 };
 
