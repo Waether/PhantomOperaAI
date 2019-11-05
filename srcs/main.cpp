@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <Move.hpp>
+#include "Move.hpp"
 #include "GameData.hpp"
 #include "Question.hpp"
 #include "Net.hpp"
@@ -92,6 +92,8 @@ int main(int argc, char const *argv[]) {
 
         Logger::Log() << "Choosing Answer ..." << std::endl;
 
+        Logger::Error() << "Current Player : " << gState.getCurrentPlayer() << std::endl;
+
 /*/
             switch (gQuestion) {
                 case Question::CharacterSelection :
@@ -100,45 +102,59 @@ int main(int argc, char const *argv[]) {
 
                     if (currentMove._characterIdx == 42)
                         Logger::Error() << "Character Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._characterIdx));
                     break;
                 case Question::PositionSelection:
                     if (currentMove._positionIdx == 42)
                         Logger::Error() << "Position Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._positionIdx));
                     break;
                 case Question::ActivatePower:
                     if (currentMove._activatePowerIdx == 42)
                         Logger::Error() << "Activate Power Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._activatePowerIdx));
                     break;
                 case Question::HandlePower:
                     if (currentMove._handlePowerIdx == 42)
                         Logger::Error() << "Handle Power Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._handlePowerIdx));
                     break;
                 case Question::PowerExit:
                     if (currentMove._powerExitIdx == 42)
                         Logger::Error() << "Power Exit Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._powerExitIdx));
                     break;
                 case Question::PowerRoom:
                     if (currentMove._powerRoomIdx == 42)
                         Logger::Error() << "Power Room Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._powerRoomIdx));
                     break;
                 case Question::PowerMove:
                     if (currentMove._powerMoveIdx == 42)
                         Logger::Error() << "Power Move Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
                     Con.SendMsg(std::to_string(currentMove._powerMoveIdx));
+                    break;
+                case Question::PowerMoveTarget:
+                    if (currentMove._powerMoveTargetIdx == 42)
+                        Logger::Error() << "Power Move Target Index Answer Uninitialized" << std::endl;
+                    Logger::Log() << "Sending Answer ..." << std::endl;
+                    Con.SendMsg(std::to_string(currentMove._powerMoveTargetIdx));
                     break;
                 case Question::Unknown:
                     Logger::Error() << "Invalid Question Received." << std::endl;
                     break;
+                default:
+                    Logger::Error() << "Invalid Question Received." << std::endl;
+                    break;
             }
 //*/
-
-        Logger::Log() << "Sending Answer ..." << std::endl;
 
         Con.SendMsg("1"); // Temporary Answer
 

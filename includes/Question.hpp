@@ -19,6 +19,7 @@ public:
         PowerExit,
         PowerRoom,
         PowerMove,
+        PowerMoveTarget,
         Unknown
     };
 

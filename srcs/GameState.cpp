@@ -5,6 +5,32 @@
 
 #include "GameState.hpp"
 
+GameState::GameState() {
+    _map = {{1, 4},
+            {0, 2},
+            {1, 3},
+            {2, 7},
+            {0, 5, 8},
+            {4, 6},
+            {5, 7},
+            {3, 6, 9},
+            {4, 9},
+            {7, 8}
+    };
+
+    _pink_map = {{1, 4},
+                 {0, 2, 5, 7},
+                 {1, 3, 6},
+                 {2, 7},
+                 {0, 5, 8, 9},
+                 {4, 6, 1, 8},
+                 {5, 7, 2, 9},
+                 {3, 6, 9, 1},
+                 {4, 9, 5},
+                 {7, 8, 4, 6}
+    };
+}
+
 void GameState::Update(nlohmann::json & newGameState) {
 
     Logger::Log() << "Updating GameState ..." << std::endl;
@@ -100,7 +126,7 @@ const int &GameState::getShadow() {
     return _shadow;
 }
 
-const int &GameState::getCarottaPosition() {
+const int &GameState::getCarlottaPosition() {
     return _carlotta_position;
 }
 
@@ -126,4 +152,23 @@ const std::vector<Character> &GameState::getCharacters() {
 
 const std::vector<Tile> &GameState::getTiles() {
     return _tiles;
+}
+
+const int GameState::getCurrentPlayer() {
+    int turn = (_nb_tour % 8) + 1;
+
+    switch (turn) {
+        case (1, 4, 6, 7) :
+            return 1; // Inspector
+        case (2, 3, 5, 8) :
+            return 0; // Ghost
+    }
+}
+
+const std::vector<std::vector<unsigned int>> & GameState::getMap() {
+    return _map;
+}
+
+const std::vector<std::vector<unsigned int>> & GameState::getPinkMap() {
+    return _pink_map;
 }
