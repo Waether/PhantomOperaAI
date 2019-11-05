@@ -206,11 +206,8 @@ void GameState::setShadow(int shadow) {
 }
 
 bool GameState::pathIsLocked(int first, int second) const {
-    if (_blocked.first == first && _blocked.second == second)
-        return true;
-    if (_blocked.first == second && _blocked.second == first)
-        return true;
-    return false;
+    return (_blocked.first == first && _blocked.second == second) ||
+           (_blocked.first == second && _blocked.second == first);
 }
 
 const unsigned int GameState::getCharacterIndexFromTiles(Color::Colors clr) const {
