@@ -94,7 +94,7 @@ int main(int argc, char const *argv[]) {
 
         Logger::Error() << "Current Player : " << gState.getCurrentPlayer() << std::endl;
 
-//*/
+/*/
             switch (gQuestion) {
                 case Question::CharacterSelection :
 
