@@ -9,34 +9,30 @@ const std::vector<Move> CharacterMove::getMoveForCharacter(const Character &char
     std::vector<Move> allmoves;
     std::vector<Move> tmp;
 
-    tmp = CharacterMove::getBaseMove(character, gState);
-
-    allmoves.insert(allmoves.end(), tmp.begin(), tmp.end());
-
     switch (character._color) {
         case Color::Blue:
-            tmp = CharacterMove::getMoveForBlue(gState);
+            tmp = CharacterMove::getMoveForBlue(character, gState);
             break;
         case Color::Grey:
-            tmp = CharacterMove::getMoveForGrey(gState);
+            tmp = CharacterMove::getMoveForGrey(character, gState);
             break;
         case Color::Black:
-            tmp = CharacterMove::getMoveForBlack(gState);
+            tmp = CharacterMove::getMoveForBlack(character, gState);
             break;
         case Color::Red:
-            tmp = CharacterMove::getMoveForRed(gState);
+            tmp = CharacterMove::getMoveForRed(character, gState);
             break;
         case Color::Purple:
-            tmp = CharacterMove::getMoveForPurple(gState);
+            tmp = CharacterMove::getMoveForPurple(character, gState);
             break;
         case Color::Brown:
-            tmp = CharacterMove::getMoveForBrown(gState);
+            tmp = CharacterMove::getMoveForBrown(character, gState);
             break;
         case Color::Pink:
-            tmp = CharacterMove::getMoveForPink(gState);
+            tmp = CharacterMove::getMoveForPink(character, gState);
             break;
         case Color::White:
-            tmp = CharacterMove::getMoveForWhite(gState);
+            tmp = CharacterMove::getMoveForWhite(character, gState);
             break;
         case Color::Unknown:
             tmp.clear();
@@ -48,43 +44,147 @@ const std::vector<Move> CharacterMove::getMoveForCharacter(const Character &char
     return allmoves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForBlue(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForBlack(const Character &character, const GameState &gState) {
     std::vector<Move> moves;
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForGrey(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForRed(const Character &character, const GameState &gState) {
     std::vector<Move> moves;
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForBlack(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForPurple(const Character &character, const GameState &gState) {
     std::vector<Move> moves;
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForRed(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForBrown(const Character &character, const GameState &gState) {
     std::vector<Move> moves;
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForPurple(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForBlue(const Character &character, const GameState &gState) {
+
+    // Can move the locked path
+
     std::vector<Move> moves;
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    // for each room that can be reached by moving
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
+            {
+                // no power activation
+                moves.emplace_back(Move {current_char, // current character index
+                                         room, // room to move
+                                         0, // no power
+                                         -1, -1, -1, -1, -1}); // ignore
+
+                // power activation
+                // for each room existing
+                for (int PowerRoom = 0; PowerRoom < 10 /* number of rooms*/; PowerRoom++) {
+
+                    // for each room adjacent to PowerRoom
+                    for (int PowerRoomExit = 0; PowerRoomExit < gState.getMap()[PowerRoom].size(); PowerRoomExit++) {
+                        moves.emplace_back(Move {current_char, // current character index
+                                                 room, // room to move
+                                                 1, // activate power
+                                                 -1, // ignore
+                                                 PowerRoomExit, // end room for power
+                                                 PowerRoom, // start room for power
+                                                 -1, -1}); // ignore
+                    }
+                }
+            }
+        }
+    }
+
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForBrown(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForGrey(const Character &character, const GameState &gState) {
+
+    // Can move shadow room
+
     std::vector<Move> moves;
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    // for each room that can be reached by moving
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
+            {
+                // no power activation
+                moves.emplace_back(Move {current_char, // current character index
+                                         room, // room to move
+                                         0, // no power
+                                         -1, -1, -1, -1, -1}); // ignore
+
+                // power activation
+                // for each room existing
+                for (int handlePower = 0; handlePower < 10 /* number of rooms*/; handlePower++) {
+                    moves.emplace_back(Move {current_char, // current character index
+                                             room, // room to move
+                                             1, // activate power
+                                             handlePower, // power room index
+                                             -1, -1, -1, -1}); // ignore
+                }
+            }
+        }
+    }
+
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForPink(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForPink(const Character &character, const GameState &gState) {
+
+    // Can move via pink path
+
     std::vector<Move> moves;
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    // for each room that can be reached by moving
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
+            moves.emplace_back(Move {current_char, // current character index
+                                     room, // room to move
+                                     -1, -1, -1, -1, -1, -1}); // ignore
+        }
+    }
+
     return moves;
 }
 
-const std::vector<Move> CharacterMove::getMoveForWhite(const GameState &gState) {
+const std::vector<Move> CharacterMove::getMoveForWhite(const Character &character, const GameState &gState) {
+
+    // Move other peoples once it has moved
+
     std::vector<Move> moves;
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    // for each room that can be reached by moving
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
+            {
+                // no power activation
+                moves.emplace_back(Move {current_char, // current character index
+                                         room, // room to move
+                                         0, // no power
+                                         -1, -1, -1, -1, -1}); // ignore
+
+                // power activation
+                // for each rooms that can be reached once the caracter has moved
+                for (int roomTargetIdx = 0; roomTargetIdx < gState.getMap()[room].size(); roomTargetIdx++) {
+                    moves.emplace_back(Move {current_char, // current character index
+                                             room, // room to move
+                                             1, // activate power
+                                             -1, -1, -1, -1, // ignore
+                                             roomTargetIdx}); // room where peoples will move once the char has moved
+                }
+            }
+        }
+    }
+
     return moves;
 }
 
@@ -92,9 +192,10 @@ const std::vector<Move> CharacterMove::getBaseMove(const Character &character, c
     std::vector<Move> moves;
     int current_char = gState.getCharacterIndexFromTiles(character._color);
 
-    for (int room : gState.getMap()[character._position]) {
-        if (!gState.pathIsLocked(character._position, room))
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
             moves.emplace_back(Move {current_char, room, 0, -1, -1, -1, -1, -1});
+        }
     }
 
     return moves;
