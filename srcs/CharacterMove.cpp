@@ -70,7 +70,22 @@ const std::vector<Move> CharacterMove::getMoveForBlack(const Character &characte
 }
 
 const std::vector<Move> CharacterMove::getMoveForRed(const Character &character, const GameState &gState) {
+
+    // Can move the locked path
+
     std::vector<Move> moves;
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    // for each room that can be reached by moving
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
+            moves.emplace_back(Move {current_char, // current character index
+                                     room, // room to move
+                                     0, // no power
+                                     -1, -1, -1, -1, -1}); // ignore
+        }
+    }
+
     return moves;
 }
 
