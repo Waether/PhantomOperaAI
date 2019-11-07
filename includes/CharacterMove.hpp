@@ -22,7 +22,6 @@ class CharacterMove {
     static const std::vector<Move> getMoveForPink(const Character & character, const GameState & gState);
     static const std::vector<Move> getMoveForWhite(const Character & character, const GameState & gState);
 
-    static const std::vector<Move> getBaseMove(const Character & character, const GameState & gState);
 };
 
 

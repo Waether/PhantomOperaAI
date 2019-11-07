@@ -6,14 +6,14 @@
 #define PHANTOMOPERAAI_MOVE_HPP
 
 typedef struct      s_Move {
-    int    _characterIdx; // 0 - 3 NEED CHECK
-    int    _positionIdx; // 0 - 9 NEED CHECK
-    int    _activatePowerIdx; // 0 - 1
-    int    _handlePowerIdx; // NEED CHECK
-    int    _powerExitIdx; // NEED CHECK
-    int    _powerRoomIdx; // 0 - 9 NEED CHECK
-    int    _powerMoveIdx; // NEED CHECK
-    int    _powerMoveTargetIdx; // NEED CHECK
+    int    _characterIdx;
+    int    _positionIdx;
+    int    _activatePowerIdx;
+    int    _handlePowerIdx;
+    int    _powerExitIdx;
+    int    _powerRoomIdx;
+    int    _powerMoveIdx;
+    int    _powerMoveTargetIdx;
 }                   Move;
 
 #endif //PHANTOMOPERAAI_MOVE_HPP

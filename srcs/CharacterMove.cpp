@@ -258,16 +258,3 @@ const std::vector<Move> CharacterMove::getMoveForWhite(const Character &characte
 
     return moves;
 }
-
-const std::vector<Move> CharacterMove::getBaseMove(const Character &character, const GameState &gState) {
-    std::vector<Move> moves;
-    int current_char = gState.getCharacterIndexFromTiles(character._color);
-
-    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
-        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
-            moves.emplace_back(Move {current_char, room, 0, -1, -1, -1, -1, -1});
-        }
-    }
-
-    return moves;
-}
