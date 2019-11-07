@@ -7,39 +7,36 @@
 const std::vector<Move> CharacterMove::getMoveForCharacter(const Character &character, const GameState &gState) {
 
     std::vector<Move> allmoves;
-    std::vector<Move> tmp;
 
     switch (character._color) {
         case Color::Blue:
-            tmp = CharacterMove::getMoveForBlue(character, gState);
+            allmoves = CharacterMove::getMoveForBlue(character, gState);
             break;
         case Color::Grey:
-            tmp = CharacterMove::getMoveForGrey(character, gState);
+            allmoves = CharacterMove::getMoveForGrey(character, gState);
             break;
         case Color::Black:
-            tmp = CharacterMove::getMoveForBlack(character, gState);
+            allmoves = CharacterMove::getMoveForBlack(character, gState);
             break;
         case Color::Red:
-            tmp = CharacterMove::getMoveForRed(character, gState);
+            allmoves = CharacterMove::getMoveForRed(character, gState);
             break;
         case Color::Purple:
-            tmp = CharacterMove::getMoveForPurple(character, gState);
+            allmoves = CharacterMove::getMoveForPurple(character, gState);
             break;
         case Color::Brown:
-            tmp = CharacterMove::getMoveForBrown(character, gState);
+            allmoves = CharacterMove::getMoveForBrown(character, gState);
             break;
         case Color::Pink:
-            tmp = CharacterMove::getMoveForPink(character, gState);
+            allmoves = CharacterMove::getMoveForPink(character, gState);
             break;
         case Color::White:
-            tmp = CharacterMove::getMoveForWhite(character, gState);
+            allmoves = CharacterMove::getMoveForWhite(character, gState);
             break;
         case Color::Unknown:
-            tmp.clear();
+            allmoves.clear();
             break;
     }
-
-    allmoves.insert(allmoves.end(), tmp.begin(), tmp.end());
 
     return allmoves;
 }
