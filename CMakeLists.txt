@@ -8,14 +8,46 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 file(
         GLOB_RECURSE
-        SRCS
+        SRCS_ALL
         includes/*
-        srcs/*
+        srcs/BoardScorer.cpp
+        srcs/Character.cpp
+        srcs/CharacterMove.cpp
+        srcs/Color.cpp
+        srcs/FantomAI.cpp
+        srcs/GameData.cpp
+        srcs/GameState.cpp
+        srcs/InspectorAI.cpp
+        srcs/KeyEvaluator.cpp
+        srcs/Logger.cpp
+        srcs/Net.cpp
+        srcs/Question.cpp
+        srcs/Tile.cpp
+        srcs/TreeHandler.cpp
+)
+
+file(
+        GLOB_RECURSE
+        SRCS_TEST
+        srcs/main_test.cpp
+)
+
+file(
+        GLOB_RECURSE
+        SRCS_MAIN
+        srcs/main.cpp
 )
 
 include_directories(includes/)
 
 add_executable(
         PhantomOperaAI
-        ${SRCS}
+        ${SRCS_ALL}
+        ${SRCS_MAIN}
+)
+
+add_executable(
+        Test
+        ${SRCS_ALL}
+        ${SRCS_TEST}
 )
