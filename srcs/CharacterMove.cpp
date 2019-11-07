@@ -46,7 +46,7 @@ const std::vector<Move> CharacterMove::getMoveForCharacter(const Character &char
 
 const std::vector<Move> CharacterMove::getMoveForBlack(const Character &character, const GameState &gState) {
 
-    // Can move the locked path
+    // Can attract everyone one she has moved
 
     std::vector<Move> moves;
     int current_char = gState.getCharacterIndexFromTiles(character._color);
@@ -71,7 +71,7 @@ const std::vector<Move> CharacterMove::getMoveForBlack(const Character &characte
 
 const std::vector<Move> CharacterMove::getMoveForRed(const Character &character, const GameState &gState) {
 
-    // Can move the locked path
+    // Doesn't do anything
 
     std::vector<Move> moves;
     int current_char = gState.getCharacterIndexFromTiles(character._color);
@@ -90,7 +90,24 @@ const std::vector<Move> CharacterMove::getMoveForRed(const Character &character,
 }
 
 const std::vector<Move> CharacterMove::getMoveForPurple(const Character &character, const GameState &gState) {
+
+    // Can Exchange place with someone
+
     std::vector<Move> moves;
+    int current_char = gState.getCharacterIndexFromTiles(character._color);
+
+    // for each room that can be reached by moving
+    for (int room = 0; room < gState.getMap()[character._position].size(); room++) {
+        if (!gState.pathIsLocked(character._position, gState.getMap()[character._position][room])) {
+            moves.emplace_back(Move {current_char, // current character index
+                                     room, // room to move
+                                     0, // no power
+                                     -1, -1, -1, -1, -1}); // ignore
+        }
+    }
+
+    // No fucking Idea how the server handle this one, Idx for players seems wrong and we don't receive parameters
+
     return moves;
 }
 
