@@ -15,8 +15,8 @@
 class Net
 {
 private:
-    int _sock;
-    struct sockaddr_in serv_addr;
+    int					_sock;
+    struct sockaddr_in	serv_addr;
 
 public:
 	Net(const char *addr, uint16_t port);

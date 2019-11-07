@@ -16,16 +16,16 @@ public:
     };
 
 private:
-    std::vector<Character> _characters;
-    std::vector<int> _numbers;
-    Mode _mode;
+    std::vector<Character>  _characters;
+    std::vector<int>        _numbers;
+    Mode                    _mode;
 
 public:
 
-    void Update(nlohmann::json &);
-    Mode getMode();
-    std::vector<Character> getCharacters();
-    std::vector<int> getNumbers();
+    void                    Update          (nlohmann::json &);
+    Mode                    getMode         ();
+    std::vector<Character>  getCharacters   ();
+    std::vector<int>        getNumbers      ();
 
 };
 
