@@ -13,7 +13,8 @@ public:
     TreeHandler(std::pair<GameState, Move>&);
     GameState GameStateAfterMove(GameState&, const Move&);
     std::vector<Tile> getTilesToPlay(GameState&);
-    int Minimax(std::pair<GameState, Move>&, int);
+    int Minimax(std::pair<GameState, Move>&);
+    static Move GetBestMove(GameState&);
 };
 
 #endif //PHANTOMOPERAAI_TREEHANDLER_HPP

@@ -1,7 +1,7 @@
 #include "../includes/TreeHandler.hpp"
 
 TreeHandler::TreeHandler(std::pair<GameState, Move>& node) {
-    _node = node;
+    
 }
 
 GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move) {
@@ -23,17 +23,23 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
     return _gameState;
 }
 
-/* std::vector<Tile> TreeHandler::getTilesToPlay(GameState& gameState) {
-    std::vector<Tile> result;
+static Move TreeHandler::GetBestMove(GameState& gameState) {
+    int bestValue = 0;
+    int currentValue = 0;
+    Move bestMove;
+    TileMove _tileMove;
 
     for (auto& _tile : gameState.getTiles()) {
-        if (_tile._power)
-            result.emplace_back(_tile);
+        for (auto& _move : _tileMove.getMoveForTile(_tile, gameState)) {
+            currentValue = Minimax(std::pair<GameState, Move>(gameState, _move));
+            if (std::abs(currentValue) > bestValue)
+                bestMove = _move;
+        }
     }
-    return result;
-} */
+    return bestMove;
+}
 
-int TreeHandler::Minimax(std::pair<GameState, Move>& node, int depth) {
+int TreeHandler::Minimax(std::pair<GameState, Move>& node) {
     if (node.first.getTiles().size() == 0) {
         BoardScorer scorer(node.first);
         if (node.first.getCurrentPlayer() == 1)
@@ -51,7 +57,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move>& node, int depth) {
                 std::pair<GameState, Move> _newNode;
                 _newNode.first = GameStateAfterMove(node.first, _move);
                 _newNode.second = _move;
-                best = std::max(best, Minimax(_newNode, depth+1));
+                best = std::max(best, Minimax(_newNode));
                 /* node.first = saveState; */
             }
             return best;
@@ -64,7 +70,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move>& node, int depth) {
                 std::pair<GameState, Move> _newNode;
                 _newNode.first = GameStateAfterMove(node.first, _move);
                 _newNode.second = _move;
-                best = std::min(best, Minimax(_newNode, depth+1));
+                best = std::min(best, Minimax(_newNode));
                 /* node.first = saveState; */
             }
             return best;
