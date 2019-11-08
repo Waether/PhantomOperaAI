@@ -98,7 +98,7 @@ int main(int argc, char const *argv[]) {
             switch (gQuestion) {
                 case Question::CharacterSelection :
 
-                    // Move = MoveGenerator.Generate(GameState, GameData);
+                    // Move = TreeHandler::GetBestMove(GameState);
 
                     if (currentMove._characterIdx == -1)
                         Logger::Error() << "Character Index Answer Uninitialized" << std::endl;
