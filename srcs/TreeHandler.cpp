@@ -1,8 +1,6 @@
 #include "../includes/TreeHandler.hpp"
 
-TreeHandler::TreeHandler(std::pair<GameState, Move>& node) {
-    
-}
+TreeHandler::TreeHandler() {}
 
 GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move) {
     GameState _gameState = gameState;
@@ -32,8 +30,10 @@ static Move TreeHandler::GetBestMove(GameState& gameState) {
     for (auto& _tile : gameState.getTiles()) {
         for (auto& _move : _tileMove.getMoveForTile(_tile, gameState)) {
             currentValue = Minimax(std::pair<GameState, Move>(gameState, _move));
-            if (std::abs(currentValue) > bestValue)
+            if (std::abs(currentValue) > std::abs(bestValue)) {
+                bestValue = currentValue;
                 bestMove = _move;
+            }
         }
     }
     return bestMove;

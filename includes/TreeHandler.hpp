@@ -8,9 +8,8 @@
 
 class TreeHandler {
 private:
-    std::pair<GameState, Move> _node;
 public:
-    TreeHandler(std::pair<GameState, Move>&);
+    TreeHandler();
     GameState GameStateAfterMove(GameState&, const Move&);
     std::vector<Tile> getTilesToPlay(GameState&);
     int Minimax(std::pair<GameState, Move>&);
