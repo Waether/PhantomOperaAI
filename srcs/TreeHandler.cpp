@@ -21,22 +21,31 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
     return _gameState;
 }
 
-static Move TreeHandler::GetBestMove(GameState& gameState) {
-    int bestValue = 0;
-    int currentValue = 0;
-    Move bestMove;
+static Move TreeHandler::GetBestMove(GameState& gameState, int player) {
+    int _bestValue = 0;
+    int _currentValue = 0;
+    Move _bestMove;
     TileMove _tileMove;
 
     for (auto& _tile : gameState.getTiles()) {
         for (auto& _move : _tileMove.getMoveForTile(_tile, gameState)) {
-            currentValue = Minimax(std::pair<GameState, Move>(gameState, _move));
-            if (std::abs(currentValue) > std::abs(bestValue)) {
-                bestValue = currentValue;
-                bestMove = _move;
+            
+            std::pair<GameState, Move> _newNode;
+            _newNode.first = GameStateAfterMove(gameState, _move);
+            _newNode.second = _move;
+            _currentValue = Minimax(_newNode);
+
+            if (player == 1 && _currentValue > _bestValue) { // inspector
+                _bestValue = _currentValue;
+                _bestMove = _move;
+            }
+            if (player == 0 && _currentValue < _bestValue) { // ghost
+                _bestValue = _currentValue;
+                _bestMove = _move;
             }
         }
     }
-    return bestMove;
+    return _bestMove;
 }
 
 int TreeHandler::Minimax(std::pair<GameState, Move>& node) {
