@@ -79,7 +79,7 @@ int main(int argc, char const *argv[]) {
         TreeHandler Hdl;
 
         if (gQuestion == Question::CharacterSelection) {
-            Move move = Hdl.GetBestMove(gState);
+            Move move = Hdl.GetBestMove(gState, gState.getCurrentPlayer());
             Logger::Debug() << "Current move : {" << move._characterIdx
                     << ", " << move._powerMoveIdx
                     << ", " << move._powerRoomIdx
