@@ -4,3 +4,4 @@ cmake-build-debug/
 PhantomOperaAI
 Debug/
 Test
+.vscode
