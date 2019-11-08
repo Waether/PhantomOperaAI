@@ -101,7 +101,7 @@ void GameState::Update(nlohmann::json & newGameState) {
             case KeyEvaluator::gStateTiles :
 
                 for (nlohmann::json::iterator cit = it.value().begin(); cit != it.value().end(); ++cit) {
-                    Tile tmp(cit.value());
+                    Character tmp(cit.value());
                     _tiles.emplace_back(tmp);
                 }
 
@@ -150,7 +150,7 @@ const std::vector<Character> &GameState::getCharacters() const {
     return _characters;
 }
 
-const std::vector<Tile> &GameState::getTiles() const {
+const std::vector<Character> &GameState::getTiles() const {
     return _tiles;
 }
 
@@ -177,7 +177,7 @@ void GameState::setCharacters(const std::vector<Character> &characters) {
     _characters = characters;
 }
 
-void GameState::setTiles(const std::vector<Tile> &tiles) {
+void GameState::setTiles(const std::vector<Character> &tiles) {
     _tiles = tiles;
 }
 

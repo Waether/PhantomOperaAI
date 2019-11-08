@@ -15,13 +15,15 @@
 
 int main(int argc, char const *argv[]) {
 
+    // Program Setup
+
     Net Con("127.0.0.1", 12000);
 
     Con.Connect();
 
     std::string msg_received;
     bool GameOn = true;
-    Move currentMove = {42, 42, 42, 42, 42, 42, 42};
+    Move currentMove = {-1, -1, -1, -1, -1, -1, -1};
 
     while (GameOn) {
 
@@ -74,25 +76,13 @@ int main(int argc, char const *argv[]) {
 
         Logger::Log() << "Choosing Answer ..." << std::endl;
 
-        Logger::Error() << "Current Player : " << gState.getCurrentPlayer() << std::endl;
-
-        TreeHandler Hdl;
-
         if (gQuestion == Question::CharacterSelection) {
+            TreeHandler Hdl;
             Move move = Hdl.GetBestMove(gState, gState.getCurrentPlayer());
-            Logger::Debug() << "Current move : {" << move._characterIdx
-                    << ", " << move._powerMoveIdx
-                    << ", " << move._powerRoomIdx
-                    << ", " << move._powerExitIdx
-                    << ", " << move._handlePowerIdx
-                    << ", " << move._activatePowerIdx
-                    << ", " << move._positionIdx
-                    << ", " << move._powerMoveTargetIdx
-                    << "}" << std::endl;
         }
 
         std::string to_send;
-        std::cout << "Please Enter Answer : ";
+        std::cout << "[IPT] Please Enter Answer : ";
 
         std::cin >> to_send;
 

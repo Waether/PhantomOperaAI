@@ -5,8 +5,8 @@
 #ifndef PHANTOMOPERAAI_CHARACTER_HPP
 #define PHANTOMOPERAAI_CHARACTER_HPP
 
-#include "Color.hpp"
 #include "nlohmann/json.hpp"
+#include "Color.hpp"
 #include "Logger.hpp"
 
 class Character {
@@ -30,7 +30,8 @@ public:
     void                    setSuspect      (const bool&);
     void                    setCharacter    (const Color::Colors&, const int&, const bool&, const bool&);
 
-    friend std::ostream & operator<<(std::ostream& os, const Character&);
+    friend std::ostream &   operator<<      (std::ostream& os, const Character&);
+
 };
 
 

@@ -6,10 +6,8 @@ set(CMAKE_CXX_FLAGS "-Wl,--no-as-needed ${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
-file(
-        GLOB_RECURSE
+set(
         SRCS_ALL
-        includes/*
         srcs/BoardScorer.cpp
         srcs/Character.cpp
         srcs/CharacterMove.cpp
@@ -22,19 +20,15 @@ file(
         srcs/Logger.cpp
         srcs/Net.cpp
         srcs/Question.cpp
-        srcs/Tile.cpp
-        srcs/TileMove.cpp
         srcs/TreeHandler.cpp
 )
 
-file(
-        GLOB_RECURSE
+set(
         SRCS_TEST
         srcs/main_test.cpp
 )
 
-file(
-        GLOB_RECURSE
+set(
         SRCS_MAIN
         srcs/main.cpp
 )

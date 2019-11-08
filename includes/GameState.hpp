@@ -10,12 +10,11 @@
 #include "nlohmann/json.hpp"
 #include "KeyEvaluator.hpp"
 #include "Character.hpp"
-#include "Tile.hpp"
 
 class GameState {
 private:
     std::vector<Character>          _characters;
-    std::vector<Tile>               _tiles;
+    std::vector<Character>          _tiles;
     std::pair<int, int>             _blocked;
     std::string                     _fantom;
     int                             _exit;
@@ -30,7 +29,7 @@ public:
 
     void Update(nlohmann::json &);
 
-    const std::vector<Tile> &               getTiles                        () const;
+    const std::vector<Character> &          getTiles                        () const;
     const std::vector<Character> &          getCharacters                   () const;
     const std::pair<int, int> &             getBlocked                      () const;
     const std::string &                     getFantom                       () const;
@@ -43,7 +42,7 @@ public:
     const std::vector<std::vector<int>> &   getPinkMap                      () const;
 
     void                                    setCharacters                   (const std::vector<Character> &);
-    void                                    setTiles                        (const std::vector<Tile> &);
+    void                                    setTiles                        (const std::vector<Character> &);
     void                                    setBlocked                      (const std::pair<int, int> &);
     void                                    setFantom                       (const std::string &);
     void                                    setExit                         (int);

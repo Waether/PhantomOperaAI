@@ -75,7 +75,7 @@ int BoardScorer::EvaluateInspector() {
 std::pair<int, int> BoardScorer::EvaluateBoard() {
     if (!_isSet)
         throw BoardException::GameStateInit();
-    return std::pair<int, int>(EvaluateGhost(), EvaluateInspector());
+    return {EvaluateGhost(), EvaluateInspector()};
 }
 
 int BoardScorer::EvaluateGhost(const GameState& gameState) {
