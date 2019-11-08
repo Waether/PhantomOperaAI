@@ -1,6 +1,4 @@
-#include "../includes/TreeHandler.hpp"
-
-TreeHandler::TreeHandler() {}
+#include "TreeHandler.hpp"
 
 GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move) {
     GameState _gameState = gameState;
