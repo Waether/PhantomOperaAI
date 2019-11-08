@@ -220,3 +220,12 @@ const int GameState::getCharacterIndexFromTiles(Color::Colors clr) const {
     return 0;
 }
 
+const int GameState::getTileIndexFromTiles(Color::Colors clr) const {
+
+    for (unsigned int i = 0; i <= _tiles.size(); i++) {
+        if (_tiles[i]._color == clr)
+            return i;
+    }
+
+    return 0;
+}

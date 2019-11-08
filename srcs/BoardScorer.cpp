@@ -28,10 +28,10 @@ int BoardScorer::EvaluateGhost() {
     if (IsGhostHidden()) {
         switch (GetNumberOfHiddenSuspectCharacters()) {
             case 8:
-                _score = 100;
+                _score = -100;
                 break;
             case 1:
-                _score = -100;
+                _score = 0;
                 break;
             default:
                 _score = 0;
@@ -41,10 +41,10 @@ int BoardScorer::EvaluateGhost() {
     else {    
         switch (GetNumberOfVisibleSuspectCharacters()) {
             case 8:
-                _score = 100;
+                _score = -90;
                 break;
             case 1:
-                _score = -100;
+                _score = 0;
                 break;
             default:
                 _score = 0;

@@ -10,7 +10,7 @@
 #include "GameState.hpp"
 
 class CharacterMove {
-
+public:
     static const std::vector<Move> getMoveForCharacter(const Character & character, const GameState & gState);
 
     static const std::vector<Move> getMoveForBlue(const Character & character, const GameState & gState);

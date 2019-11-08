@@ -7,6 +7,7 @@
 
 #include "nlohmann/json.hpp"
 
+#include "Character.hpp"
 #include "Color.hpp"
 #include "Logger.hpp"
 

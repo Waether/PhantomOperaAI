@@ -52,6 +52,7 @@ public:
     void                                    setShadow                       (int);
 
     const int                               getCharacterIndexFromTiles      (Color::Colors) const;
+    const int                               getTileIndexFromTiles           (Color::Colors) const;
     bool                                    pathIsLocked                    (int, int) const;
 };
 

@@ -23,6 +23,7 @@ file(
         srcs/Net.cpp
         srcs/Question.cpp
         srcs/Tile.cpp
+        srcs/TileMove.cpp
         srcs/TreeHandler.cpp
 )
 
