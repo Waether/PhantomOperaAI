@@ -21,7 +21,7 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
     return _gameState;
 }
 
-static Move TreeHandler::GetBestMove(GameState& gameState) {
+Move TreeHandler::GetBestMove(GameState& gameState) {
     int bestValue = 0;
     int currentValue = 0;
     Move bestMove;
@@ -29,7 +29,7 @@ static Move TreeHandler::GetBestMove(GameState& gameState) {
 
     for (auto& _tile : gameState.getTiles()) {
         for (auto& _move : _tileMove.getMoveForTile(_tile, gameState)) {
-            currentValue = Minimax(std::pair<GameState, Move>(gameState, _move));
+            currentValue = Minimax({gameState, _move});
             if (std::abs(currentValue) > std::abs(bestValue)) {
                 bestValue = currentValue;
                 bestMove = _move;
@@ -39,7 +39,7 @@ static Move TreeHandler::GetBestMove(GameState& gameState) {
     return bestMove;
 }
 
-int TreeHandler::Minimax(std::pair<GameState, Move>& node) {
+int TreeHandler::Minimax(std::pair<GameState, Move> node) {
     if (node.first.getTiles().size() == 0) {
         BoardScorer scorer(node.first);
         if (node.first.getCurrentPlayer() == 1)
