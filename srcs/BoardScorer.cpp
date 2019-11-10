@@ -25,64 +25,12 @@ int BoardScorer::EvaluateGhost() {
     int _score = 0;
 
     if (IsGhostHidden()) {
-        switch (GetNumberOfHiddenSuspectCharacters()) {
-            case 8:
-                _score = -100;
-                break;
-            case 7:
-                _score = -90;
-                break;
-            case 6:
-                _score = -75;
-                break;
-            case 5:
-                _score = -60;
-                break;
-            case 4:
-                _score = -45;
-                break;
-            case 3:
-                _score = -30;
-                break;
-            case 2:
-                _score = -15;
-                break;
-            case 1:
-                _score = 10;
-                break;
-            default:
-                _score = -5;
-                break;
-        }
+        _score = -(GetNumberOfSuspectCharacters() * 20) + (GetNumberOfVisibleSuspectCharacters() * 20);    
     }
     else {
-        switch (GetNumberOfVisibleSuspectCharacters()) {
-            case 8:
-                _score = -90;
-                break;
-            case 7:
-                _score = -75;
-                break;
-            case 6:
-                _score = -60;
-                break;
-            case 5:
-                _score = -45;
-                break;
-            case 4:
-                _score = -30;
-                break;
-            case 3:
-                _score = -15;
-                break;
-            case 2:
-                _score = 10;
-                break;
-            default:
-                _score = -5;
-                break;
-        }
+        _score = -(GetNumberOfSuspectCharacters() * 15) + (GetNumberOfHiddenSuspectCharacters() * 10);
     }
+
     return _score;
 }
 
@@ -91,18 +39,12 @@ int BoardScorer::EvaluateInspector() {
         throw BoardException::GameStateInit();
     int _score = 0;
 
-    // half hidden, half visible (even number of suspects)
-    if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfVisibleSuspectCharacters())
-        _score = 100;
-    // One more visible than hidden (odd number of suspects)
-    if (GetNumberOfHiddenSuspectCharacters() + 1 == GetNumberOfVisibleSuspectCharacters())
-        _score = 90;
-    // One more hidden than visible (odd number of suspects)
-    if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfVisibleSuspectCharacters() + 1)
-        _score = 80;
+
+    _score = 100 - 10 * std::abs(GetNumberOfHiddenSuspectCharacters() - GetNumberOfVisibleSuspectCharacters());
     if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfSuspectCharacters())
         _score = -20;
-        
+
+    Logger::Debug() << "Score inspector : " << _score << std::endl;
     return _score;
 }
 

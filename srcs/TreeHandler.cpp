@@ -84,7 +84,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
         }
     }
 
-    if (node.first.getCurrentPlayer() == 1) { // inspector
+    if (node.first.getCurrentPlayer() == 0) { // ghost
         int best = -1000;
         for (auto& _tile : node.first.getTiles()) {
             for (auto& _move : CharacterMove::getMoveForCharacter(_tile, node.first)) {
@@ -95,7 +95,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
             }
             return best;
         }
-    } else if (node.first.getCurrentPlayer() == 0) { // ghost
+    } else if (node.first.getCurrentPlayer() == 1) { // inspector
         int best = 1000;
         for (auto& _tile : node.first.getTiles()) {
             for (auto& _move : CharacterMove::getMoveForCharacter(_tile, node.first)) {
