@@ -121,9 +121,15 @@ const GameState TreeHandler::MakeMoveForBlue(const Character &character, const G
 
     std::vector<Character> _chars = gState.getCharacters();
 
-//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
-//    _gameState.setCharacters(_chars);
-//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+    std::vector<Character> _chars = newgState.getCharacters();
+    for (int i = 0; i <= _chars.size(); i++) {
+        if (_chars[i]._color == character._color)
+            _chars[i].setPosition(newgState.getMap()[_chars[i].getPosition()][move._positionIdx]);
+    }
+
+    if (move._activatePowerIdx == 1) {
+        newgState.setBlocked({move._powerExitIdx, move._powerRoomIdx});
+    }
 
     return newgState;
 }
