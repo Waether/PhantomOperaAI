@@ -119,8 +119,6 @@ const GameState TreeHandler::MakeMoveForBlue(const Character &character, const G
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    std::vector<Character> _chars = gState.getCharacters();
-
     std::vector<Character> _chars = newgState.getCharacters();
     for (int i = 0; i <= _chars.size(); i++) {
         if (_chars[i]._color == character._color)
