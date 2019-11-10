@@ -24,16 +24,6 @@ int BoardScorer::EvaluateGhost() {
         throw BoardException::GameStateInit();
     int _score = 0;
 
-    for (auto& _vect : _charactersPosition) {
-        Logger::Debug() << "===== Room number :" << _vect.first << std::endl;
-        for (auto& _char : _vect.second) {
-            Logger::Debug() << "character :" << _char << std::endl;
-        }
-    }
-    Logger::Debug() << "Ghost hidden :" << IsGhostHidden() << std::endl;
-    Logger::Debug() << "Hidden suspect :" << GetNumberOfHiddenSuspectCharacters() << std::endl;
-    Logger::Debug() << "visible suspect : " << GetNumberOfVisibleSuspectCharacters() << std::endl;
-
     if (IsGhostHidden()) {
         switch (GetNumberOfHiddenSuspectCharacters()) {
             case 8:
