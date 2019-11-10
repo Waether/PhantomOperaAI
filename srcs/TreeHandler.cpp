@@ -153,11 +153,14 @@ const GameState TreeHandler::MakeMoveForBlack(const Character &character, const 
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    std::vector<Character> _chars = gState.getCharacters();
+    std::vector<Character> _chars = newgState.getCharacters();
+    for (int i = 0; i <= _chars.size(); i++) {
+        if (_chars[i]._color == character._color)
+            _chars[i].setPosition(newgState.getMap()[_chars[i].getPosition()][move._positionIdx]);
+    }
 
-//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
-//    _gameState.setCharacters(_chars);
-//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+    newgState.setCharacters(_chars);
+    newgState.setNbTour(newgState.getNbTour() + 1);
 
     return newgState;
 }
