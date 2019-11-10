@@ -23,26 +23,16 @@ set(
         srcs/TreeHandler.cpp
 )
 
-set(
-        SRCS_TEST
-        srcs/main_test.cpp
-)
-
-set(
-        SRCS_MAIN
-        srcs/main.cpp
-)
-
 include_directories(includes/)
 
 add_executable(
         PhantomOperaAI
         ${SRCS_ALL}
-        ${SRCS_MAIN}
+        srcs/main.cpp
 )
 
 add_executable(
         Test
         ${SRCS_ALL}
-        ${SRCS_TEST}
+        srcs/main_test.cpp
 )
