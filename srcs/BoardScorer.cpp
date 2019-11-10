@@ -22,7 +22,7 @@ void BoardScorer::setGameState(const GameState& gameState) {
 int BoardScorer::EvaluateGhost() {
     if (!_isSet)
         throw BoardException::GameStateInit();
-    int _score = -100;
+    int _score = 0;
 
     for (auto& _vect : _charactersPosition) {
         Logger::Debug() << "===== Room number :" << _vect.first << std::endl;
@@ -68,27 +68,24 @@ int BoardScorer::EvaluateGhost() {
     else {    
         switch (GetNumberOfVisibleSuspectCharacters()) {
             case 8:
-                _score = -100;
-                break;
-            case 7:
                 _score = -90;
                 break;
-            case 6:
+            case 7:
                 _score = -75;
                 break;
-            case 5:
+            case 6:
                 _score = -60;
                 break;
-            case 4:
+            case 5:
                 _score = -45;
                 break;
-            case 3:
+            case 4:
                 _score = -30;
                 break;
-            case 2:
+            case 3:
                 _score = -15;
                 break;
-            case 1:
+            case 2:
                 _score = 10;
                 break;
             default:
@@ -102,7 +99,7 @@ int BoardScorer::EvaluateGhost() {
 int BoardScorer::EvaluateInspector() {
     if (!_isSet)
         throw BoardException::GameStateInit();
-    int _score = 100;
+    int _score = 0;
 
     // half hidden, half visible (even number of suspects)
     if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfVisibleSuspectCharacters())
