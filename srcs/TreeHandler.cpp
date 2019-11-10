@@ -9,11 +9,38 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
     std::vector<Character> _chars = _gameState.getCharacters();
     for (auto& _char : _chars) {
         if (_char.getColor() == colorToMove) {
-            _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
-            _char.setPower(false);
-            // handle power for each char
+
+            switch (_char._color) {
+                case Color::Blue:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Grey:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Black:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Red:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Purple:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Brown:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Pink:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::White:
+                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    break;
+                case Color::Unknown:
+                    break;
+            }
         }
     }
+
     _gameState.setCharacters(_chars);
     _gameState.setNbTour(_gameState.getNbTour() + 1);
     return _gameState;
@@ -82,4 +109,140 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
             return best;
         }
     }
+}
+
+const GameState TreeHandler::MakeMoveForBlue(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForGrey(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForBlack(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForRed(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForPurple(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForBrown(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForPink(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
+}
+
+const GameState TreeHandler::MakegetMoveForWhite(const Character &character, const GameState &gState, const Move & move) {
+    GameState newgState = gState;
+
+    // Delete char from tiles
+    std::vector<Character> _tiles = newgState.getTiles();
+    _tiles.erase(_tiles.begin() + move._characterIdx);
+    newgState.setTiles(_tiles);
+
+    std::vector<Character> _chars = gState.getCharacters();
+
+//    _char.setPosition(_gameState.getMap()[_char.getPosition()][move._positionIdx]);
+//    _gameState.setCharacters(_chars);
+//    _gameState.setNbTour(_gameState.getNbTour() + 1);
+
+    return newgState;
 }

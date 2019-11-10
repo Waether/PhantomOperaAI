@@ -55,7 +55,7 @@ int BoardScorer::EvaluateGhost() {
                 break;
         }
     }
-    else {    
+    else {
         switch (GetNumberOfVisibleSuspectCharacters()) {
             case 8:
                 _score = -90;

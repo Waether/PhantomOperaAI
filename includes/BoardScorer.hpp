@@ -37,6 +37,7 @@ private:
     int GetNumberOfHiddenCharacters();
     int GetNumberOfVisibleCharacters();
     int GetNumberOfVisibleSuspectCharacters();
+
 };
 
 
