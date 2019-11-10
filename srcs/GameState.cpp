@@ -157,9 +157,7 @@ const std::vector<Character> &GameState::getTiles() const {
 }
 
 const int GameState::getCurrentPlayer() const {
-    int turn = _nb_tour;
-    if (_nb_tour > 8)
-        turn = (_nb_tour % 9) + 1;
+    int turn = ((_nb_tour - 1) % 8) + 1;
 
     switch (turn) {
         case 1 :
