@@ -14,6 +14,22 @@
 
 int main(int argc, char const *argv[]) {
 
+    int playerType = -1;
+
+    if (argc < 2) {
+        Logger::Error() << "Need on parameter : Ghost / Inspector." << std::endl;
+        return -1;
+    }
+
+    if (std::string(argv[1]) == "Ghost" || std::string(argv[1]) == "-g")
+        playerType = 0;
+    else if (std::string(argv[1]) == "Inspector" || std::string(argv[1]) == "-i")
+        playerType = 1;
+    else {
+        Logger::Error() << "Parameter need to be : Ghost -g / Inspector -i." << std::endl;
+        return -1;
+    }
+
     // Program Setup
 
     Net Con("127.0.0.1", 12000);
@@ -79,7 +95,7 @@ int main(int argc, char const *argv[]) {
             case Question::CharacterSelection :
 
                 TreeHandler Hdl;
-                currentMove = Hdl.GetBestMove(gState, gState.getCurrentPlayer());
+                currentMove = Hdl.GetBestMove(gState, playerType);
 
                 if (currentMove._characterIdx == -1)
                     Logger::Error() << "Character Index Answer Uninitialized" << std::endl;
