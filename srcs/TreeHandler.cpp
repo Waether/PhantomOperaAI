@@ -40,9 +40,6 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
             }
         }
     }
-
-    _gameState.setCharacters(_chars);
-    _gameState.setNbTour(_gameState.getNbTour() + 1);
     return _gameState;
 }
 
