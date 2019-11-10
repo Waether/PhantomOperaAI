@@ -67,11 +67,11 @@ Move TreeHandler::GetBestMove(GameState& gameState, int player) {
             Logger::Debug() << "For player : " << player
                             << "Best value : " << _bestValue
                             << "Current value : " << _currentValue << std::endl;
-            if (player == 1 && _currentValue >= _bestValue) { // inspector
+            if (player == 1 && (_currentValue >= _bestValue || _bestMove._positionIdx == -1)) { // inspector
                 _bestValue = _currentValue;
                 _bestMove = _move;
             }
-            if (player == 0 && _currentValue <= _bestValue) { // ghost
+            if (player == 0 && (_currentValue <= _bestValue || _bestMove._positionIdx == -1)) { // ghost
                 _bestValue = _currentValue;
                 _bestMove = _move;
             }
@@ -115,6 +115,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
 
     if (node.first.getCurrentPlayer() == 1) { // inspector
         int best = -1000;
+        Logger::Debug() << "Inspector for turn " << node.first.getCurrentPlayer() << std::endl;
         for (auto& _tile : node.first.getTiles()) { 
             /* GameState saveState = node.first; */
             for (auto& _move : CharacterMove::getMoveForCharacter(_tile, node.first)) {
@@ -128,6 +129,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
         }
     } else if (node.first.getCurrentPlayer() == 0) { // ghost
         int best = 1000;
+        Logger::Debug() << "Ghost for turn " << node.first.getCurrentPlayer() << std::endl;
         for (auto& _tile : node.first.getTiles()) { 
             /* GameState saveState = node.first; */
             for (auto& _move : CharacterMove::getMoveForCharacter(_tile, node.first)) {
