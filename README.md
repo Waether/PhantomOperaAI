@@ -4,6 +4,7 @@ An C++ AI made to work with [nlehir's](https://github.com/nlehir/phantom_opera.g
 ## Prerequisites
 
 * Linux (tested on Ubuntu 18.04) - Should be compatible with others Linux based OS
+* Windows (tested on Windows 10)
 * Python 3.6 You need this version specifically for the server to work
 * CMake (tested with 3.5)
 
@@ -37,7 +38,7 @@ The Ghost should be launched second
 
 
 ## TODO
-* Need to test building using Windows and MacOS
+* Need to test building using MacOS
 
 ## Authors
 
