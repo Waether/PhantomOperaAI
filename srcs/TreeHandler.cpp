@@ -15,25 +15,25 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
                     _gameState = MakeMoveForBlue(_char, gameState, move);
                     break;
                 case Color::Grey:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForGrey(_char, gameState, move);
                     break;
                 case Color::Black:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForBlack(_char, gameState, move);
                     break;
                 case Color::Red:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForRed(_char, gameState, move);
                     break;
                 case Color::Purple:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForPurple(_char, gameState, move);
                     break;
                 case Color::Brown:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForBrown(_char, gameState, move);
                     break;
                 case Color::Pink:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForPink(_char, gameState, move);
                     break;
                 case Color::White:
-                    _gameState = MakeMoveForBlue(_char, gameState, move);
+                    _gameState = MakeMoveForWhite(_char, gameState, move);
                     break;
                 case Color::Unknown:
                     break;
@@ -128,7 +128,7 @@ const GameState TreeHandler::MakeMoveForBlue(const Character &character, const G
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForGrey(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForGrey(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles
@@ -145,7 +145,7 @@ const GameState TreeHandler::MakegetMoveForGrey(const Character &character, cons
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForBlack(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForBlack(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles
@@ -162,7 +162,7 @@ const GameState TreeHandler::MakegetMoveForBlack(const Character &character, con
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForRed(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForRed(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles
@@ -179,7 +179,7 @@ const GameState TreeHandler::MakegetMoveForRed(const Character &character, const
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForPurple(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForPurple(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles
@@ -196,7 +196,7 @@ const GameState TreeHandler::MakegetMoveForPurple(const Character &character, co
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForBrown(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForBrown(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles
@@ -213,7 +213,7 @@ const GameState TreeHandler::MakegetMoveForBrown(const Character &character, con
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForPink(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForPink(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles
@@ -230,7 +230,7 @@ const GameState TreeHandler::MakegetMoveForPink(const Character &character, cons
     return newgState;
 }
 
-const GameState TreeHandler::MakegetMoveForWhite(const Character &character, const GameState &gState, const Move & move) {
+const GameState TreeHandler::MakeMoveForWhite(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
 
     // Delete char from tiles

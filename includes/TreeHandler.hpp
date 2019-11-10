@@ -15,13 +15,13 @@ public:
     Move GetBestMove(GameState&, int);
 
     const GameState MakeMoveForBlue(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForGrey(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForBlack(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForRed(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForPurple(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForBrown(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForPink(const Character & character, const GameState & gState, const Move & move);
-    const GameState MakegetMoveForWhite(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForGrey(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForBlack(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForRed(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForPurple(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForBrown(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForPink(const Character & character, const GameState & gState, const Move & move);
+    const GameState MakeMoveForWhite(const Character & character, const GameState & gState, const Move & move);
 };
 
 #endif //PHANTOMOPERAAI_TREEHANDLER_HPP
