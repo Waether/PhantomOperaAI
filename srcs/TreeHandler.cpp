@@ -250,6 +250,8 @@ const GameState TreeHandler::MakeMoveForBrown(const Character &character, const 
             if (_chars[i]._color != character._color
                 && _chars[i]._position == character._position)
                 _chars[i].setPosition(newgState.getMap()[_chars[i].getPosition()][move._positionIdx]);
+        }
+        for (int i = 0; i <= _chars.size(); i++) {
             if (_chars[i]._color == character._color)
                 _chars[i].setPosition(newgState.getMap()[_chars[i].getPosition()][move._positionIdx]);
         }
