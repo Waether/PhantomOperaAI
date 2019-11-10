@@ -29,6 +29,8 @@ GameState::GameState() {
                  {4, 9, 5},
                  {7, 8, 4, 6}
     };
+
+    _nb_tour = 0;
 }
 
 void GameState::Update(nlohmann::json & newGameState) {
@@ -79,8 +81,8 @@ void GameState::Update(nlohmann::json & newGameState) {
 
             case KeyEvaluator::gStateNumberTour :
 
-                _nb_tour = it.value();
-                Logger::Log() << '\t' << "Turn n°" << _nb_tour << std::endl;
+//                _nb_tour = it.value();
+//                Logger::Log() << '\t' << "Turn n°" << _nb_tour << std::endl;
 
                 break;
 
@@ -158,8 +160,6 @@ const int GameState::getCurrentPlayer() const {
     int turn = _nb_tour;
     if (_nb_tour > 8)
         turn = (_nb_tour % 9) + 1;
-    Logger::Debug() << "nbtour : " << _nb_tour << std::endl;
-    Logger::Debug() << "TURN : " << turn << std::endl;
 
     switch (turn) {
         case 1 :
