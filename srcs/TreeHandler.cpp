@@ -161,6 +161,22 @@ const GameState TreeHandler::MakeMoveForBlack(const Character &character, const 
     }
 
     // Power
+    if (move._activatePowerIdx == 1) {
+        int char_room_idx = 0;
+
+        for (auto & chartmp : _chars) {
+            if (chartmp._color == character._color)
+                char_room_idx = chartmp._position;
+        }
+
+        for (auto & chartmp : _chars) {
+            for (auto adjacent : newgState.getMap()[char_room_idx]) {
+                if (chartmp._position == adjacent) {
+                    chartmp.setPosition(char_room_idx);
+                }
+            }
+        }
+    }
 
     // End & return
     newgState.setCharacters(_chars);
@@ -281,6 +297,20 @@ const GameState TreeHandler::MakeMoveForWhite(const Character &character, const 
     }
 
     // Power
+    if (move._activatePowerIdx == 1) {
+        int char_room_idx = 0;
+
+        for (auto & chartmp : _chars) {
+            if (chartmp._color == character._color)
+                char_room_idx = chartmp._position;
+        }
+
+        for (auto & chartmp : _chars) {
+                if (chartmp._position == char_room_idx) {
+                    chartmp.setPosition(move._powerMoveTargetIdx);
+                }
+        }
+    }
 
     // End & return
     newgState.setCharacters(_chars);
