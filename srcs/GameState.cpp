@@ -155,13 +155,29 @@ const std::vector<Character> &GameState::getTiles() const {
 }
 
 const int GameState::getCurrentPlayer() const {
-    int turn = (_nb_tour % 8) + 1;
+    int turn = _nb_tour;
+    if (_nb_tour > 8)
+        turn = (_nb_tour % 9) + 1;
+    Logger::Debug() << "nbtour : " << _nb_tour << std::endl;
+    Logger::Debug() << "TURN : " << turn << std::endl;
 
     switch (turn) {
-        case (1, 4, 6, 7) :
-            return 1; // Inspector
-        case (2, 3, 5, 8) :
-            return 0; // Ghost
+        case 1 :
+            return 1;
+        case 4 :
+            return 1;
+        case 6 :
+            return 1;
+        case 7 :
+            return 1;
+        case 2 :
+            return 0;
+        case 3 :
+            return 0;
+        case 5 :
+            return 0;
+        case 8 :
+            return 0;    
     }
 }
 

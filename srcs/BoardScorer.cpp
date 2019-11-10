@@ -14,8 +14,7 @@ void BoardScorer::setGameState(const GameState& gameState) {
     _scoreGhost = 0;
     _scoreInspector = 0;
     for (auto& _character : _gameState.getCharacters()) {
-        if (_charactersPosition.find(_character._position) != _charactersPosition.end())
-            _charactersPosition[_character._position].emplace_back(_character);
+        _charactersPosition[_character._position].emplace_back(_character);
     }
     _isSet = true;
 }
@@ -23,31 +22,77 @@ void BoardScorer::setGameState(const GameState& gameState) {
 int BoardScorer::EvaluateGhost() {
     if (!_isSet)
         throw BoardException::GameStateInit();
-    int _score = 0;
+    int _score = -100;
+
+    for (auto& _vect : _charactersPosition) {
+        Logger::Debug() << "===== Room number :" << _vect.first << std::endl;
+        for (auto& _char : _vect.second) {
+            Logger::Debug() << "character :" << _char << std::endl;
+        }
+    }
+    Logger::Debug() << "Ghost hidden :" << IsGhostHidden() << std::endl;
+    Logger::Debug() << "Hidden suspect :" << GetNumberOfHiddenSuspectCharacters() << std::endl;
+    Logger::Debug() << "visible suspect : " << GetNumberOfVisibleSuspectCharacters() << std::endl;
 
     if (IsGhostHidden()) {
         switch (GetNumberOfHiddenSuspectCharacters()) {
             case 8:
                 _score = -100;
                 break;
+            case 7:
+                _score = -90;
+                break;
+            case 6:
+                _score = -75;
+                break;
+            case 5:
+                _score = -60;
+                break;
+            case 4:
+                _score = -45;
+                break;
+            case 3:
+                _score = -30;
+                break;
+            case 2:
+                _score = -15;
+                break;
             case 1:
-                _score = 0;
+                _score = 10;
                 break;
             default:
-                _score = 0;
+                _score = -5;
                 break;
         }
     }
     else {    
         switch (GetNumberOfVisibleSuspectCharacters()) {
             case 8:
+                _score = -100;
+                break;
+            case 7:
                 _score = -90;
                 break;
+            case 6:
+                _score = -75;
+                break;
+            case 5:
+                _score = -60;
+                break;
+            case 4:
+                _score = -45;
+                break;
+            case 3:
+                _score = -30;
+                break;
+            case 2:
+                _score = -15;
+                break;
             case 1:
-                _score = 0;
+                _score = 10;
                 break;
             default:
-                _score = 0;
+                _score = -5;
                 break;
         }
     }
@@ -57,7 +102,7 @@ int BoardScorer::EvaluateGhost() {
 int BoardScorer::EvaluateInspector() {
     if (!_isSet)
         throw BoardException::GameStateInit();
-    int _score = 0;
+    int _score = 100;
 
     // half hidden, half visible (even number of suspects)
     if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfVisibleSuspectCharacters())
@@ -68,6 +113,8 @@ int BoardScorer::EvaluateInspector() {
     // One more hidden than visible (odd number of suspects)
     if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfVisibleSuspectCharacters() + 1)
         _score = 80;
+    if (GetNumberOfHiddenSuspectCharacters() == GetNumberOfSuspectCharacters())
+        _score = -20;
         
     return _score;
 }

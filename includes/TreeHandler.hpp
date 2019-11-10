@@ -11,7 +11,7 @@ public:
     TreeHandler() = default;
     GameState GameStateAfterMove(GameState&, const Move&);
     std::vector<Character> getTilesToPlay(GameState&);
-    int Minimax(std::pair<GameState, Move>);
+    int Minimax(std::pair<GameState, Move>, int);
     Move GetBestMove(GameState&, int);
 };
 
