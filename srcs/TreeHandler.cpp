@@ -8,18 +8,6 @@ GameState TreeHandler::GameStateAfterMove(GameState& gameState, const Move& move
     _gameState.setTiles(_tiles);
     std::vector<Character> _chars = _gameState.getCharacters();
 
-    Logger::Debug() << "For move : "
-                    << "{" << move._characterIdx
-                    << ", " << move._positionIdx
-                    << ", " << move._activatePowerIdx
-                    << ", " << move._handlePowerIdx
-                    << ", " << move._powerExitIdx
-                    << ", " << move._powerRoomIdx
-                    << ", " << move._powerMoveIdx
-                    << ", " << move._powerMoveTargetIdx
-                    << "}" << std::endl;
-
-
     for (auto& _char : _chars) {
         if (_char.getColor() == colorToMove) {
 
@@ -123,15 +111,12 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
 
 const GameState TreeHandler::MakeMoveForBlue(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Blue" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -143,25 +128,19 @@ const GameState TreeHandler::MakeMoveForBlue(const Character &character, const G
         newgState.setBlocked({move._powerExitIdx, move._powerRoomIdx});
     }
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
-
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForGrey(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Grey" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -174,25 +153,20 @@ const GameState TreeHandler::MakeMoveForGrey(const Character &character, const G
         newgState.setShadow(move._handlePowerIdx);
     }
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForBlack(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Black" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -218,25 +192,20 @@ const GameState TreeHandler::MakeMoveForBlack(const Character &character, const 
         }
     }
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForRed(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Red" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -246,25 +215,20 @@ const GameState TreeHandler::MakeMoveForRed(const Character &character, const Ga
 
     // Power
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForPurple(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Purple" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -274,25 +238,20 @@ const GameState TreeHandler::MakeMoveForPurple(const Character &character, const
 
     // Power
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForBrown(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Brown" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     if (move._activatePowerIdx == 0) {
@@ -315,25 +274,20 @@ const GameState TreeHandler::MakeMoveForBrown(const Character &character, const 
         }
     }
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForPink(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move Pink" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -341,25 +295,20 @@ const GameState TreeHandler::MakeMoveForPink(const Character &character, const G
             _char.setPosition(newgState.getPinkMap()[_char.getPosition()][move._positionIdx]);
     }
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
 
 const GameState TreeHandler::MakeMoveForWhite(const Character &character, const GameState &gState, const Move & move) {
     GameState newgState = gState;
-    Logger::Debug() << "Making Move White" << std::endl;
 
     // Delete char from tiles
     std::vector<Character> _tiles = newgState.getTiles();
     _tiles.erase(_tiles.begin() + move._characterIdx);
     newgState.setTiles(_tiles);
 
-    Logger::Debug() << "\tSimple Move" << std::endl;
     // Simple move
     std::vector<Character> _chars = newgState.getCharacters();
     for (auto &_char : _chars) {
@@ -367,7 +316,6 @@ const GameState TreeHandler::MakeMoveForWhite(const Character &character, const 
             _char.setPosition(newgState.getMap()[_char.getPosition()][move._positionIdx]);
     }
 
-    Logger::Debug() << "\tPower" << std::endl;
     // Power
     if (move._activatePowerIdx == 1) {
         int char_room_idx = 0;
@@ -384,11 +332,8 @@ const GameState TreeHandler::MakeMoveForWhite(const Character &character, const 
         }
     }
 
-    Logger::Debug() << "\tEnd Turn" << std::endl;
-
     newgState.setCharacters(_chars);
     newgState.setNbTour(newgState.getNbTour() + 1);
 
-    Logger::Debug() << "Move Done" << std::endl;
     return newgState;
 }
