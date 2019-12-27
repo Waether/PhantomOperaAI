@@ -107,6 +107,7 @@ int TreeHandler::Minimax(std::pair<GameState, Move> node, int player) {
             return best;
         }
     }
+    return 0;
 }
 
 const GameState TreeHandler::MakeMoveForBlue(const Character &character, const GameState &gState, const Move & move) {
