@@ -175,7 +175,9 @@ const int GameState::getCurrentPlayer() const {
         case 5 :
             return 0;
         case 8 :
-            return 0;    
+            return 0;
+        default:
+            return -1;
     }
 }
 
