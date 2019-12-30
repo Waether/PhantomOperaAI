@@ -5,6 +5,7 @@
 #include "Net.hpp"
 #include "Logger.hpp"
 #include <sstream>
+#include <cstring>
 
 Net::Net(const char *addr, uint16_t port)
 {
@@ -100,7 +101,7 @@ std::string Net::ReceiveMsg() {
         }
         str_result += buffer;
 
-        buffer[1024] = {0};
+	    memset(&buffer[0], 0, sizeof(buffer));
     }
 
     Logger::Log() << "Message Received. " << str_result.size() << " bytes total." << std::endl;
