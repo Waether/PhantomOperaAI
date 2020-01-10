@@ -30,9 +30,3 @@ add_executable(
         ${SRCS_ALL}
         srcs/main.cpp
 )
-
-add_executable(
-        Test
-        ${SRCS_ALL}
-        srcs/main_test.cpp
-)
